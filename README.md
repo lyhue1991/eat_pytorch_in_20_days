@@ -25,7 +25,7 @@
 
 本书的TensorFlow镜像教程：
 
-🍊**《30天吃掉那只TensorFlow2》**：https://github.com/lyhue1991/eat_tensorflow2_in_30_days 
+#### 🍊《30天吃掉那只TensorFlow2》：https://github.com/lyhue1991/eat_tensorflow2_in_30_days 
 
 ```python
 
