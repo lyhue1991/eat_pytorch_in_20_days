@@ -17,11 +17,9 @@
 
 # !git rm --cached  .ipynb_checkpoints/* 
 
-# !git commit -m "add chapter6-2" 
+# !git commit -m "add 1-1" 
 
-# !git remote rm origin 
-
-# !git remote add origin https://github.com/lyhue1991/eat_pytorch_in_30_days
+# !git remote add origin https://github.com/lyhue1991/eat_pytorch_in_20_days
 
 # !git push  origin master 
 
@@ -51,6 +49,10 @@
 # !git push -u origin gh-pages
 
 # !git checkout pages
+
+
+
+
 
 
 
