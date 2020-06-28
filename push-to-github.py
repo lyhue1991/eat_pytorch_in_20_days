@@ -29,7 +29,7 @@
 
 # !git remote add gitee https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
 
-# !git push  gitee master 
+# !git push -f gitee master 
 
 # ## 创建pages分支
 
