@@ -103,7 +103,7 @@
 |day3 | [1-3,文本数据建模流程范例](./1-3,文本数据建模流程范例.md)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅  |
 |day4 | [1-4,时间序列数据建模流程范例](./1-4,时间序列数据建模流程范例.md)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
 |&nbsp; |[**二、Pytorch的核心概念**](./二、Pytorch的核心概念.md)  | ⭐️  |  0hour |✅  |
-|day5 |  [2-1,张量数据结构](./2-1,张量数据结构.md)  | ⭐️⭐️⭐️⭐️   |   1hour    |   |
+|day5 |  [2-1,张量数据结构](./2-1,张量数据结构.md)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅   |
 |day6 |  [2-2,动态计算图](./2-2,动态计算图.md)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    |  |
 |day7 |  [2-3,自动微分机制](./2-3,自动微分机制.md)  | ⭐️⭐️⭐️   |   1hour    |   |
 |&nbsp; |[**三、Pytorch的层次结构**](./三、Pytorch的层次结构.md) |   ⭐️  |  0hour   | ✅  |
@@ -144,7 +144,7 @@
 #建议在jupyter notebook 上安装jupytext，以便能够将本书各章节markdown文件视作ipynb文件运行
 #!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
     
-#建议在jupyter notebook 上安装最新版本tensorflow 测试本书中的代码
+#建议在jupyter notebook 上安装最新版本pytorch 测试本书中的代码
 #!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  -U torch torchvision torchtext torchkeras 
 ```
 
