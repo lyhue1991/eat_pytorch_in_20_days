@@ -111,9 +111,9 @@
 |day9 |  [3-2,中阶API示范](./3-2,中阶API示范.md)   | ⭐️⭐️⭐️   |  1hour    |✅  |
 |day10 | [3-3,高阶API示范](./3-3,高阶API示范.md)  | ⭐️⭐️⭐️  |   1hour    |✅ |
 |&nbsp; |[**四、Pytorch的低阶API**](./四、Pytorch的低阶API.md) |⭐️    | 0hour| ✅ |
-|day11|  [4-1,张量的结构操作](./4-1,张量的结构操作.md)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | |
-|day12|  [4-2,张量的数学运算](./4-2,张量的数学运算.md)   | ⭐️⭐️⭐️⭐️   |   1hour    ||
-|day13|  [4-3,nn.functional和nn.Module](./4-3,nn.functional和nn.Module.md)  | ⭐️⭐️⭐️⭐️   |   1hour    ||
+|day11|  [4-1,张量的结构操作](./4-1,张量的结构操作.md)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅ |
+|day12|  [4-2,张量的数学运算](./4-2,张量的数学运算.md)   | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
+|day13|  [4-3,nn.functional和nn.Module](./4-3,nn.functional和nn.Module.md)  | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
 |&nbsp; |[**五、Pytorch的中阶API**](./五、Pytorch的中阶API.md) |  ⭐️  | 0hour|✅ |
 |day14|  [5-1,Dataset和DataLoader](./5-1,Dataset和DataLoader.md)   | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | |
 |day15|  [5-2,模型层](./5-3,模型层.md)  | ⭐️⭐️⭐️   |   1hour    ||

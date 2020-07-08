@@ -17,7 +17,7 @@
 
 # !git rm --cached  .ipynb_checkpoints/* 
 
-# !git commit -m "add 2-2" 
+# !git commit -m "add 3-1" 
 
 # !git remote add origin https://github.com/lyhue1991/eat_pytorch_in_20_days
 
