@@ -135,6 +135,14 @@ cuda:0
 ```
 
 ```python
+# 5，清空cuda缓存
+
+# 该方法在cuda超内存时十分有用
+torch.cuda.empty_cache()
+
+```
+
+```python
 
 ```
 
