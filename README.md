@@ -124,8 +124,8 @@
 |day13|  [4-3,nn.functional和nn.Module](./4-3,nn.functional和nn.Module.md)  | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
 |&nbsp; |[**五、Pytorch的中阶API**](./五、Pytorch的中阶API.md) |  ⭐️  | 0hour|✅ |
 |day14|  [5-1,Dataset和DataLoader](./5-1,Dataset和DataLoader.md)   | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅   |
-|day15|  [5-2,模型层](./5-3,模型层.md)  | ⭐️⭐️⭐️   |   1hour    |✅  |
-|day16|  [5-3,损失函数](./5-4,损失函数.md)    | ⭐️⭐️⭐️   |   1hour    |✅   |
+|day15|  [5-2,模型层](./5-2,模型层.md)  | ⭐️⭐️⭐️   |   1hour    |✅  |
+|day16|  [5-3,损失函数](./5-3,损失函数.md)    | ⭐️⭐️⭐️   |   1hour    |✅   |
 |day17|  [5-4,TensorBoard可视化](./5-4,TensorBoard可视化.md)    | ⭐️⭐️⭐️   |   1hour    | ✅   |
 |&nbsp; |[**六、Pytorch的高阶API**](./六、Pytorch的高阶API.md)|    ⭐️ | 0hour|✅  |
 |day18|  [6-1,构建模型的3种方法](./6-1,构建模型的3种方法.md)   | ⭐️⭐️⭐️⭐️    |   1hour    |✅   |
