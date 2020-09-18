@@ -1,6 +1,6 @@
 # How to eat Pytorch in 20 days ?🔥🔥
 
-
+<details><summary>Chinese</summary>
 **《20天吃掉那只Pytorch》**
 * 🚀 github项目地址: https://github.com/lyhue1991/eat_pytorch_in_20_days
 * 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5f2ac5d8af3980002cb1bc08 【代码可直接fork后云端运行，无需配置环境】
@@ -192,3 +192,4 @@ torch version: 1.5.0
 ```python
 
 ```
+</details>
