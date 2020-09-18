@@ -225,7 +225,7 @@ Why to master both?
 
 For mastering Tensorflow:
 
-#### 🍊 "Eat TensorFlow2 in 30 days" ： https: //github.com/lyhue1991/eat_tensorflow2_in_30_days
+#### 🍊 "Eat TensorFlow2 in 30 days"： https://github.com/lyhue1991/eat_tensorflow2_in_30_days
 
 ```python
 
