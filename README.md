@@ -197,7 +197,7 @@ torch version: 1.5.0
 
 <details><summary>English</summary>
 
-** "Eat Pytorch in 20 Days" **
+**"Eat Pytorch in 20 Days"**
 * 🚀 github project address: https://github.com/lyhue1991/eat_pytorch_in_20_days
 * 🐳 Column address: https://www.kesci.com/home/column/5f2ac5d8af3980002cb1bc08 【Code can be run directly in the cloud after fork, no need to configure the environment】
 
