@@ -1,6 +1,5 @@
 # How to eat Pytorch in 20 days ?🔥🔥
 
-
 **《20天吃掉那只Pytorch》**
 * 🚀 github项目地址: https://github.com/lyhue1991/eat_pytorch_in_20_days
 * 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5f2ac5d8af3980002cb1bc08 【代码可直接fork后云端运行，无需配置环境】
@@ -8,6 +7,8 @@
 **《30天吃掉那只TensorFlow2》**
 * 🚀 github项目地址: https://github.com/lyhue1991/eat_tensorflow2_in_30_days
 * 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5d8ef3c3037db3002d3aa3a0 【代码可直接fork后云端运行，无需配置环境】
+
+<details><summary>Original</summary>
 
 ### 一， Pytorch🔥  or TensorFlow2 🍎 
 
@@ -192,3 +193,176 @@ torch version: 1.5.0
 ```python
 
 ```
+</details>
+
+<details><summary>English</summary>
+
+**"Eat Pytorch in 20 Days"**
+* 🚀 github project address: https://github.com/lyhue1991/eat_pytorch_in_20_days
+* 🐳 Column address: https://www.kesci.com/home/column/5f2ac5d8af3980002cb1bc08 【Code can be run directly in the cloud after fork, no need to configure the environment】
+
+**"Eat TensorFlow 2 in 30 Days"**
+* 🚀 github project address: https://github.com/lyhue1991/eat_tensorflow2_in_30_days
+* 🐳 Column address: https://www.kesci.com/home/column/5d8ef3c3037db3002d3aa3a0 【The code can be run directly in the cloud after fork, no need to configure the environment】
+
+### 1. Pytorch🔥  or TensorFlow2 🍎 
+
+Conclusion first:
+
+**If you are an engineer, TensorFlow2 should be preferred.**
+
+**If you are a student or researcher, Pytorch should be preferred.**
+
+**If there is enough time, it is best to learn and master both TensorFlow2 and Pytorch.**
+
+Why to master both?
+
+* 1. **The most important thing in the industry is the production of models. At present, most domestic Internet companies only support the online deployment of TensorFlow models, not Pytorch.** And the industry pays more attention to the high availability of the model. Many times, the mature model architectures are used, and the need for debugging is not really large.
+
+* 2. **In research, the most important thing is to publish articles quickly, and they need to try some newer model architectures. Pytorch has some advantages over TensorFlow2 in terms of ease of use and is more convenient for debugging.** Pytorch has occupied more than half of the academic world since 2019 with more cutting-edge research results.
+
+* 3. TensorFlow2 and Pytorch are actually very similar in overall style. After learning one, it will be easier to learn the other. Mastering both frameworks provides you oppurtunities to contribute to more open source model cases.
+
+For mastering Tensorflow:
+
+#### 🍊 "Eat TensorFlow2 in 30 days"： https://github.com/lyhue1991/eat_tensorflow2_in_30_days
+
+```python
+
+```
+
+### 2. What Should You Know Before Reading This Book? 👼
+
+This book assumes that the reader has a certain foundation of machine learning and deep learning, and has used Keras or TensorFlow or Pytorch to build and train simple models.
+
+For students who do not have any machine learning and deep learning foundations, it is recommended to read the first part of the book **"Deep Learning with Python"** when studying this book.
+
+The book **"Deep Learning with Python"** is written by Francois Chollet, the father of Keras. The book assumes that the reader has no machine learning knowledge and uses Keras as a tool. It uses many examples to demonstrate the best practices of deep learning. The book is easy to understand as there is no mathematical formula in the book. The book mainly focuses on cultivating readers' deep learning intuition.
+
+The contents of the 4 chapters of the first part of the book "Deep Learning for python" are as follows:
+
+1. What is deep learning 
+2. The mathematical building blocks of neural networks 
+3. Getting started with Neural Networks 
+4. Fundamentals of Machine learning
+
+```python
+
+```
+
+### 3. Writing style of this book 🍉
+
+
+**This book is a Pytorch introductory tool that is extremely friendly to human users. "Don't let the readers think" is the highest pursuit of this book.**
+
+This book is mainly organized and written on the basis of referring to Pytorch official documentation together with its functions.
+
+Although the official Pytorch documentation is quite concise and clear, this book has made a lot of optimizations in the chapter structure and selection of examples, which is more user-friendly.
+
+This book is designed in accordance with the difficulty of the content, the reader's search habits and Pytorch's own hierarchical structure. The content is designed step by step, with clear levels, and it is convenient to find corresponding examples according to functions.
+
+This book is as simple and structured as possible in the design of examples to enhance the legibility and versatility of examples. Most of the code snippets are ready to use in practice.
+
+**If the difficulty of mastering Pytorch by learning the official Pytorch documentation is about 5, then the difficulty of learning to master Pytorch through this book should be about 2.**
+
+```python
+
+```
+
+### 4. How to use this Book? ⏰
+
+
+**1. Study Plan**
+
+Number of days required to eat this book: This book was written by the author about 3 months after work, and most readers should be able to learn it in **20 days**.
+
+How many hours a day should you spend: It is estimated that the study time spent every day is between 30 minutes and 2 hours.
+
+Note: This book is also very suitable as a reference for Pytorch's tool manual when the project is implemented.
+
+**Click the blue title of the learning content to enter the chapter.**
+
+|Date | Contents                                                       | Difficulty   | Est. Time | Update Status|
+|----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
+|&nbsp;|[**1. Pytorch's modeling process**](./一、Pytorch的建模流程.md)    |⭐️   |   0hour   |✅    |
+|day1 | [1-1. Example of structured data modeling process](./1-1,结构化数据建模流程范例.md)    | ⭐️⭐️⭐️ |   1hour    |✅    |
+|day2 | [1-2. Example of image data modeling process](./1-2,图片数据建模流程范例.md)    | ⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
+|day3 | [1-3. Example of text data modeling process](./1-3,文本数据建模流程范例.md)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅  |
+|day4 | [1-4. Example of time series data modeling process](./1-4,时间序列数据建模流程范例.md)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
+|&nbsp; |[**2. The core concept of Pytorch**](./二、Pytorch的核心概念.md)  | ⭐️  |  0hour |✅  |
+|day5 |  [2-1. Tensor data structure](./2-1,张量数据结构.md)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅   |
+|day6 |  [2-2. Automatic differentiation mechanism](./2-2,自动微分机制.md)  | ⭐️⭐️⭐️   |   1hour    | ✅  |
+|day7 |  [2-3. Dynamic calculation diagram](./2-3,动态计算图.md)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅   |
+|&nbsp; |[**3. The hierarchy of Pytorch**](./三、Pytorch的层次结构.md) |   ⭐️  |  0hour   | ✅  |
+|day8 |  [3-1. Low-level API demonstration](./3-1,低阶API示范.md)   | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
+|day9 |  [3-2. Intermediate API demonstration](./3-2,中阶API示范.md)   | ⭐️⭐️⭐️   |  1hour    |✅  |
+|day10 | [3-3. High-level API demonstration](./3-3,高阶API示范.md)  | ⭐️⭐️⭐️  |   1hour    |✅ |
+|&nbsp; |[**4. Pytorch's low-level API**](./四、Pytorch的低阶API.md) |⭐️    | 0hour| ✅ |
+|day11|  [4-1. Tensor structure operation](./4-1,张量的结构操作.md)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅ |
+|day12|  [4-2. Mathematical operations of tensors](./4-2,张量的数学运算.md)   | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
+|day13|  [4-3. nn.functional and nn.Module](./4-3,nn.functional和nn.Module.md)  | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
+|&nbsp; |[**5. Pytorch's intermediate-level API**](./五、Pytorch的中阶API.md) |  ⭐️  | 0hour|✅ |
+|day14|  [5-1. Dataset and DataLoader](./5-1,Dataset和DataLoader.md)   | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅   |
+|day15|  [5-2. Model layer](./5-3,模型层.md)  | ⭐️⭐️⭐️   |   1hour    |✅  |
+|day16|  [5-3. Loss function](./5-4,损失函数.md)    | ⭐️⭐️⭐️   |   1hour    |✅   |
+|day17|  [5-4. TensorBoard TensorBoard visualization](./5-4,TensorBoard可视化.md)    | ⭐️⭐️⭐️   |   1hour    | ✅   |
+|&nbsp; |[**6. Pytorch's high-level API**](./六、Pytorch的高阶API.md)|    ⭐️ | 0hour|✅  |
+|day18|  [6-1. 3 ways to build a model](./6-1,构建模型的3种方法.md)   | ⭐️⭐️⭐️⭐️    |   1hour    |✅   |
+|day19|  [6-2. 3 ways to train a model](./6-2,训练模型的3种方法.md)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
+|day20|  [6-3. Use GPU to train model](./6-3,使用GPU训练模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+
+**2. Learning environment**
+
+All the source code of this book has been written and tested in jupyter. It is recommended to clone to the local through git and run and learn interactively in jupyter.
+
+In order to directly open the markdown file in jupyter, it is recommended to install jupytext and convert the markdown to an ipynb file.
+
+```python
+#clone the source code of this book to local, use the code cloud mirror warehouse to download faster in china
+
+#!git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
+
+#it is recommended to install jupytext on jupyter notebook so that the markdown files of each chapter of this book can be run as ipynb files
+#!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
+    
+#it is recommended to install the latest version of pytorch on jupyter notebook to test the code in this book
+#!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  -U torch torchvision torchtext torchkeras 
+```
+
+```python
+import torch 
+from torch import nn
+
+print("torch version:", torch.__version__)
+
+a = torch.tensor([[2,1]])
+b = torch.tensor([[-1,2]])
+c = a@b.t()
+print("[[2,1]]@[[-1],[2]] =", c.item())
+
+```
+
+```
+torch version: 1.5.0
+[[2,1]]@[[-1],[2]] = 0
+```
+```python
+
+```
+
+### 5. Contact and support the author 🎈🎈
+
+
+**If this book is helpful to you and want to encourage the author, remember to add a star⭐️ to this project and share it with your friends😊!** 
+
+If you need to further communicate with the author on the understanding of the content of this book, please leave a message under the public account "The Beauty of Python and Algorithms". The author has limited time and energy and will respond as appropriate.
+
+You can also reply to keywords in the background of the official account: add group, join the reader exchange group and discuss with you.
+
+![image.png](./data/Python与算法之美logo.jpg)
+
+```python
+
+```
+
+</details>
