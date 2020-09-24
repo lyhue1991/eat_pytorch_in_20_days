@@ -74,7 +74,7 @@ plt.show()
 
 ```
 
-![](./data/3-3-回归数据可视化.png)
+![](../data/3-3-回归数据可视化.png)
 
 ```python
 #构建输入数据管道
@@ -236,7 +236,7 @@ plt.show()
 dfhistory.tail()
 ```
 
-![](./data/3-3-dfhistory.png)
+![](../data/3-3-dfhistory.png)
 
 ```python
 %matplotlib inline
@@ -262,13 +262,13 @@ def plot_metric(dfhistory, metric):
 plot_metric(dfhistory,"loss")
 ```
 
-![](./data/3-3-loss曲线.png)
+![](../data/3-3-loss曲线.png)
 
 ```python
 plot_metric(dfhistory,"mape")
 ```
 
-![](./data/3-3-mape曲线.png)
+![](../data/3-3-mape曲线.png)
 
 ```python
 # 评估
@@ -376,7 +376,7 @@ plt.legend(["positive","negative"]);
 
 ```
 
-![](./data/3-3-分类数据可视化.png)
+![](../data/3-3-分类数据可视化.png)
 
 ```python
 ds = TensorDataset(X,Y)
@@ -523,7 +523,7 @@ ax2.set_title("y_pred");
 
 ```
 
-![](./data/3-3-分类结果可视化.png)
+![](../data/3-3-分类结果可视化.png)
 
 
 **4，评估模型**
@@ -551,13 +551,13 @@ def plot_metric(dfhistory, metric):
 plot_metric(dfhistory,"loss")
 ```
 
-![](./data/3-3-分类loss曲线.png)
+![](../data/3-3-分类loss曲线.png)
 
 ```python
 plot_metric(dfhistory,"accuracy")
 ```
 
-![](./data/3-3-分类acc曲线.png)
+![](../data/3-3-分类acc曲线.png)
 
 ```python
 model.evaluate(dl_valid)
@@ -596,4 +596,4 @@ tensor([[0.9998],
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![image.png](./data/Python与算法之美logo.jpg)
+![image.png](../data/Python与算法之美logo.jpg)

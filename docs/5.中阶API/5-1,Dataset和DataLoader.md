@@ -195,25 +195,25 @@ from torchvision import transforms,datasets
 
 ```python
 from PIL import Image
-img = Image.open('./data/cat.jpeg')
+img = Image.open('../data/cat.jpeg')
 img
 ```
 
-![](./data/5-1-傻乎乎.png)
+![](../data/5-1-傻乎乎.png)
 
 ```python
 # 随机数值翻转
 transforms.RandomVerticalFlip()(img)
 ```
 
-![](./data/5-1-翻转.png)
+![](../data/5-1-翻转.png)
 
 ```python
 #随机旋转
 transforms.RandomRotation(45)(img)
 ```
 
-![](./data/5-1-旋转.png)
+![](../data/5-1-旋转.png)
 
 ```python
 # 定义图片增强操作
@@ -235,9 +235,9 @@ transform_valid = transforms.Compose([
 
 ```python
 # 根据图片目录创建数据集
-ds_train = datasets.ImageFolder("./data/cifar2/train/",
+ds_train = datasets.ImageFolder("../data/cifar2/train/",
             transform = transform_train,target_transform= lambda t:torch.tensor([t]).float())
-ds_valid = datasets.ImageFolder("./data/cifar2/test/",
+ds_valid = datasets.ImageFolder("../data/cifar2/test/",
             transform = transform_train,target_transform= lambda t:torch.tensor([t]).float())
 
 print(ds_train.class_to_idx)
@@ -334,7 +334,7 @@ df_word_dict.head(10)
 
 ```
 
-![](./data/5-1-词典.png)
+![](../data/5-1-词典.png)
 
 
 然后我们利用构建好的词典，将文本转换成token序号。
@@ -704,7 +704,7 @@ tensor([ 1, 29, 11, 47, 12, 22, 48, 42, 10,  7])
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![image.png](./data/Python与算法之美logo.jpg)
+![image.png](../data/Python与算法之美logo.jpg)
 
 ```python
 

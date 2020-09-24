@@ -64,7 +64,7 @@ plt.show()
 
 ```
 
-![](./data/3-1-回归数据可视化.png)
+![](../data/3-1-回归数据可视化.png)
 
 ```python
 # 构建数据管道迭代器
@@ -243,7 +243,7 @@ plt.ylabel("y",rotation = 0)
 plt.show()
 ```
 
-![](./data/3-1-回归结果可视化.png)
+![](../data/3-1-回归结果可视化.png)
 
 ```python
 
@@ -294,7 +294,7 @@ plt.legend(["positive","negative"]);
 
 ```
 
-![](./data/3-1-分类数据可视化.png)
+![](../data/3-1-分类数据可视化.png)
 
 ```python
 # 构建数据管道迭代器
@@ -500,7 +500,7 @@ ax2.set_title("y_pred");
 
 ```
 
-![](./data/3-1-分类结果可视化.png)
+![](../data/3-1-分类结果可视化.png)
 
 ```python
 
@@ -510,4 +510,4 @@ ax2.set_title("y_pred");
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![image.png](./data/Python与算法之美logo.jpg)
+![image.png](../data/Python与算法之美logo.jpg)
