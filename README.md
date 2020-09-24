@@ -4,8 +4,8 @@
 * 🚀 github项目地址: https://github.com/lyhue1991/eat_pytorch_in_20_days
 * 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5f2ac5d8af3980002cb1bc08 【代码可直接fork后云端运行，无需配置环境】
 * 🍕 网页地址：http://jackiexiao.github.io/eat_pytorch_in_20_days  （临时展示用）
-*  TODO Merge PR并开启github page后更新网址为 ：http://lyhue1991.github.io/eat_pytorch_in_20_days  
-* 修改md文件并push到github，网页会自动更新（见.github/workflows/ci.yml）
+>  TODO Merge PR并开启github page后更新网址为 ：http://lyhue1991.github.io/eat_pytorch_in_20_days  
+> 修改md文件并push到github，网页会自动更新（见.github/workflows/ci.yml）
 
 **《30天吃掉那只TensorFlow2》**
 * 🚀 github项目地址: https://github.com/lyhue1991/eat_tensorflow2_in_30_days

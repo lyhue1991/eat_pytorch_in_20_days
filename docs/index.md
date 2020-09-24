@@ -8,7 +8,6 @@
 * 🚀 github项目地址: https://github.com/lyhue1991/eat_tensorflow2_in_30_days
 * 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5d8ef3c3037db3002d3aa3a0 【代码可直接fork后云端运行，无需配置环境】
 
-<details><summary>Original</summary>
 
 ### 一， Pytorch🔥  or TensorFlow2 🍎 
 
@@ -193,9 +192,7 @@ torch version: 1.5.0
 ```python
 
 ```
-</details>
 
-<details><summary>English</summary>
 
 **"Eat Pytorch in 20 Days"**
 * 🚀 github project address: https://github.com/lyhue1991/eat_pytorch_in_20_days
@@ -360,9 +357,3 @@ If you need to further communicate with the author on the understanding of the c
 You can also reply to keywords in the background of the official account: add group, join the reader exchange group and discuss with you.
 
 ![image.png](./data/Python与算法之美logo.jpg)
-
-```python
-
-```
-
-</details>

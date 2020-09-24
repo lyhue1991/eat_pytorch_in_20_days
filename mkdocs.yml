@@ -2,14 +2,14 @@
 # mkdocs-material: https://squidfunk.github.io/mkdocs-material/
 # mkdocs: https://www.mkdocs.org/user-guide/configuration/
 
-site_name: Foam-mkdocs-template
+site_name: 20天吃掉那只Pytorch
+repo_url: https://github.com/lyhue1991/eat_pytorch_in_20_days
 theme:
   name: material
   #  favicon: attachment/portrait.png
   language: zh # 中文，解决中文搜索问题
   features:
     - navigation.expand 
-    - tabs 
 markdown_extensions: 
   - attr_list # https://squidfunk.github.io/mkdocs-material/reference/images/
   - pymdownx.tabbed  # https://squidfunk.github.io/mkdocs-material/reference/content-tabs/
