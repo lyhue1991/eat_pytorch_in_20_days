@@ -69,7 +69,7 @@ plt.show()
 
 ```
 
-![](./data/3-2-线性回归数据可视化.png)
+![](../data/3-2-线性回归数据可视化.png)
 
 ```python
 #构建输入数据管道
@@ -190,7 +190,7 @@ plt.show()
 
 ```
 
-![](./data/3-2-回归结果可视化.png)
+![](../data/3-2-回归结果可视化.png)
 
 ```python
 
@@ -243,7 +243,7 @@ plt.legend(["positive","negative"]);
 
 ```
 
-![](./data/3-2-分类数据可视化.png)
+![](../data/3-2-分类数据可视化.png)
 
 ```python
 #构建输入数据管道
@@ -392,7 +392,7 @@ ax2.set_title("y_pred");
 
 ```
 
-![](./data/3-2-分类结果可视化.png)
+![](../data/3-2-分类结果可视化.png)
 
 ```python
 
@@ -402,4 +402,4 @@ ax2.set_title("y_pred");
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![image.png](./data/Python与算法之美logo.jpg)
+![image.png](../data/Python与算法之美logo.jpg)

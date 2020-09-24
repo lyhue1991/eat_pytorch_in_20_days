@@ -24,4 +24,4 @@ Pytorch的层次结构从低到高可以分成如下五层。
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![image.png](./data/Python与算法之美logo.jpg)
+![image.png](../data/Python与算法之美logo.jpg)

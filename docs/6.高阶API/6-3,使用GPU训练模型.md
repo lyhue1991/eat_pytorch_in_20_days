@@ -121,10 +121,10 @@ print(model.device_ids)
 print(next(model.module.parameters()).device) 
 
 #注意保存参数时要指定保存model.module的参数
-torch.save(model.module.state_dict(), "./data/model_parameter.pkl") 
+torch.save(model.module.state_dict(), "../data/model_parameter.pkl") 
 
 linear = nn.Linear(2,1)
-linear.load_state_dict(torch.load("./data/model_parameter.pkl")) 
+linear.load_state_dict(torch.load("../data/model_parameter.pkl")) 
 
 ```
 
@@ -390,8 +390,8 @@ import torchkeras
 ```python
 transform = transforms.Compose([transforms.ToTensor()])
 
-ds_train = torchvision.datasets.MNIST(root="./data/minist/",train=True,download=True,transform=transform)
-ds_valid = torchvision.datasets.MNIST(root="./data/minist/",train=False,download=True,transform=transform)
+ds_train = torchvision.datasets.MNIST(root="../data/minist/",train=True,download=True,transform=transform)
+ds_valid = torchvision.datasets.MNIST(root="../data/minist/",train=False,download=True,transform=transform)
 
 dl_train =  torch.utils.data.DataLoader(ds_train, batch_size=128, shuffle=True, num_workers=4)
 dl_valid =  torch.utils.data.DataLoader(ds_valid, batch_size=128, shuffle=False, num_workers=4)
@@ -652,8 +652,8 @@ import torchkeras
 ```python
 transform = transforms.Compose([transforms.ToTensor()])
 
-ds_train = torchvision.datasets.MNIST(root="./data/minist/",train=True,download=True,transform=transform)
-ds_valid = torchvision.datasets.MNIST(root="./data/minist/",train=False,download=True,transform=transform)
+ds_train = torchvision.datasets.MNIST(root="../data/minist/",train=True,download=True,transform=transform)
+ds_valid = torchvision.datasets.MNIST(root="../data/minist/",train=False,download=True,transform=transform)
 
 dl_train =  torch.utils.data.DataLoader(ds_train, batch_size=128, shuffle=True, num_workers=4)
 dl_valid =  torch.utils.data.DataLoader(ds_valid, batch_size=128, shuffle=False, num_workers=4)
