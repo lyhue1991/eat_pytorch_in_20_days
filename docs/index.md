@@ -1,6 +1,6 @@
 # How to eat Pytorch in 20 days ?🔥🔥
 
-=== "中文“
+=== "中文"
 
     **《20天吃掉那只Pytorch》**
     * 🚀 github项目地址: https://github.com/lyhue1991/eat_pytorch_in_20_days
@@ -176,7 +176,7 @@
     ![image.png](./data/Python与算法之美logo.jpg)
     
 
-=== ”English"
+=== "English"
 
     **"Eat Pytorch in 20 Days"**
     * 🚀 github project address: https://github.com/lyhue1991/eat_pytorch_in_20_days
