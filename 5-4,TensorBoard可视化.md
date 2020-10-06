@@ -313,7 +313,7 @@ writer.close()
 ### 五，可视化人工绘图
 
 
-如果我们将matplotlib绘图的结果再 tensorboard中展示，可以使用 add_figure.
+如果我们将matplotlib绘图的结果在 tensorboard中展示，可以使用 add_figure.
 
 注意，和writer.add_image不同的是，writer.add_figure需要传入matplotlib的figure对象。
 
