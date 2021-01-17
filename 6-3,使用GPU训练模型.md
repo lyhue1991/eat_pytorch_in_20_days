@@ -360,10 +360,10 @@ time used: 0.4889392852783203
 
 ```
 
-### 三，torchkeras使用单GPU范例
+### 三，torchkeras.Model使用单GPU范例
 
 
-下面演示使用torchkeras来应用GPU训练模型的方法。
+下面演示使用torchkeras.Model来应用GPU训练模型的方法。
 
 其对应的CPU训练模型代码参见《6-2,训练模型的3种方法》
 
@@ -631,7 +631,7 @@ model_clone.evaluate(dl_valid)
 ```
 
 
-### 四，torchkeras使用多GPU范例
+### 四，torchkeras.Model使用多GPU范例
 
 
 注：以下范例需要在有多个GPU的机器上跑。如果在单GPU的机器上跑，也能跑通，但是实际上使用的是单个GPU。
@@ -845,6 +845,266 @@ model_clone.evaluate(dl_valid)
 
 ```
 {'val_accuracy': 0.9603441455696202, 'val_loss': 0.14203246376371081}
+```
+
+```python
+
+```
+
+### 五，torchkeras.LightModel使用GPU/TPU范例
+
+
+
+使用torchkeras.LightModel可以非常容易地将训练模式从cpu切换到单个gpu，多个gpu乃至多个tpu.
+
+
+
+**1，准备数据**
+
+```python
+import torch 
+from torch import nn 
+
+import torchvision 
+from torchvision import transforms
+
+import torchkeras 
+```
+
+```python
+transform = transforms.Compose([transforms.ToTensor()])
+
+ds_train = torchvision.datasets.MNIST(root="./data/minist/",train=True,download=True,transform=transform)
+ds_valid = torchvision.datasets.MNIST(root="./data/minist/",train=False,download=True,transform=transform)
+
+dl_train =  torch.utils.data.DataLoader(ds_train, batch_size=128, shuffle=True, num_workers=4)
+dl_valid =  torch.utils.data.DataLoader(ds_valid, batch_size=128, shuffle=False, num_workers=4)
+
+print(len(ds_train))
+print(len(ds_valid))
+```
+
+**2，定义模型**
+
+```python
+import torchkeras 
+import pytorch_lightning as pl 
+
+class CnnNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.layers = nn.ModuleList([
+            nn.Conv2d(in_channels=1,out_channels=32,kernel_size = 3),
+            nn.MaxPool2d(kernel_size = 2,stride = 2),
+            nn.Conv2d(in_channels=32,out_channels=64,kernel_size = 5),
+            nn.MaxPool2d(kernel_size = 2,stride = 2),
+            nn.Dropout2d(p = 0.1),
+            nn.AdaptiveMaxPool2d((1,1)),
+            nn.Flatten(),
+            nn.Linear(64,32),
+            nn.ReLU(),
+            nn.Linear(32,10)]
+        )
+    def forward(self,x):
+        for layer in self.layers:
+            x = layer(x)
+        return x
+    
+
+class Model(torchkeras.LightModel):
+    
+    #loss,and optional metrics
+    def shared_step(self,batch)->dict:
+        x, y = batch
+        prediction = self(x)
+        loss = nn.CrossEntropyLoss()(prediction,y)
+        preds = torch.argmax(nn.Softmax(dim=1)(prediction),dim=1).data
+        acc = pl.metrics.functional.accuracy(preds, y)
+        dic = {"loss":loss,"acc":acc} 
+        return dic
+    
+    #optimizer,and optional lr_scheduler
+    def configure_optimizers(self):
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-2)
+        lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.0001)
+        return {"optimizer":optimizer,"lr_scheduler":lr_scheduler}
+    
+pl.seed_everything(1234)
+net = CnnNet()
+model = Model(net)
+
+torchkeras.summary(model,input_shape=(1,32,32))
+print(model)
+
+```
+
+```python
+
+```
+
+**3，训练模型**
+
+```python
+ckpt_cb = pl.callbacks.ModelCheckpoint(monitor='val_loss')
+
+# set gpus=0 will use cpu，
+# set gpus=1 will use 1 gpu
+# set gpus=2 will use 2gpus 
+# set gpus = -1 will use all gpus 
+# you can also set gpus = [0,1] to use the  given gpus
+# you can even set tpu_cores=2 to use two tpus 
+
+trainer = pl.Trainer(max_epochs=10,gpus = 2, callbacks=[ckpt_cb]) 
+
+trainer.fit(model,dl_train,dl_valid)
+```
+
+```
+================================================================================2021-01-16 23:13:34
+epoch =  0
+{'val_loss': 0.0954340249300003, 'val_acc': 0.9727057218551636}
+{'acc': 0.910403311252594, 'loss': 0.27809813618659973}
+
+================================================================================2021-01-16 23:15:02
+epoch =  1
+{'val_loss': 0.06748798489570618, 'val_acc': 0.9809137582778931}
+{'acc': 0.9663013219833374, 'loss': 0.10915637016296387}
+
+================================================================================2021-01-16 23:16:34
+epoch =  2
+{'val_loss': 0.06344369053840637, 'val_acc': 0.980320394039154}
+{'acc': 0.9712153673171997, 'loss': 0.09515620768070221}
+
+================================================================================2021-01-16 23:18:05
+epoch =  3
+{'val_loss': 0.08105307072401047, 'val_acc': 0.977155864238739}
+{'acc': 0.9747745990753174, 'loss': 0.08337805420160294}
+
+================================================================================2021-01-16 23:19:38
+epoch =  4
+{'val_loss': 0.06881670653820038, 'val_acc': 0.9798259735107422}
+{'acc': 0.9764847159385681, 'loss': 0.08077647536993027}
+
+================================================================================2021-01-16 23:21:11
+epoch =  5
+{'val_loss': 0.07127966731786728, 'val_acc': 0.980320394039154}
+{'acc': 0.9758350849151611, 'loss': 0.08572731912136078}
+
+================================================================================2021-01-16 23:22:41
+epoch =  6
+{'val_loss': 0.1256944239139557, 'val_acc': 0.9672666192054749}
+{'acc': 0.978233814239502, 'loss': 0.07292930781841278}
+
+================================================================================2021-01-16 23:24:05
+epoch =  7
+{'val_loss': 0.08458385616540909, 'val_acc': 0.9767602682113647}
+{'acc': 0.9790666699409485, 'loss': 0.0768343135714531}
+
+================================================================================2021-01-16 23:25:32
+epoch =  8
+{'val_loss': 0.06721501052379608, 'val_acc': 0.983188271522522}
+{'acc': 0.9786669015884399, 'loss': 0.07818026840686798}
+
+================================================================================2021-01-16 23:26:56
+epoch =  9
+{'val_loss': 0.06671519577503204, 'val_acc': 0.9839794039726257}
+{'acc': 0.9826259613037109, 'loss': 0.06241251528263092}
+```
+
+```python
+
+```
+
+**4，评估模型**
+
+```python
+import pandas as pd 
+
+history = model.history
+dfhistory = pd.DataFrame(history) 
+dfhistory 
+```
+
+```python
+%matplotlib inline
+%config InlineBackend.figure_format = 'svg'
+
+import matplotlib.pyplot as plt
+
+def plot_metric(dfhistory, metric):
+    train_metrics = dfhistory[metric]
+    val_metrics = dfhistory['val_'+metric]
+    epochs = range(1, len(train_metrics) + 1)
+    plt.plot(epochs, train_metrics, 'bo--')
+    plt.plot(epochs, val_metrics, 'ro-')
+    plt.title('Training and validation '+ metric)
+    plt.xlabel("Epochs")
+    plt.ylabel(metric)
+    plt.legend(["train_"+metric, 'val_'+metric])
+    plt.show()
+```
+
+```python
+plot_metric(dfhistory,"loss")
+```
+
+```python
+plot_metric(dfhistory,"acc")
+```
+
+```python
+results = trainer.test(model, test_dataloaders=dl_valid, verbose = False)
+print(results[0])
+```
+
+```
+{'test_loss': 0.005034677684307098, 'test_acc': 1.0}
+```
+
+```python
+
+```
+
+**5，使用模型**
+
+```python
+def predict(model,dl):
+    model.eval()
+    preds = torch.cat([model.forward(t[0].to(model.device)) for t in dl])
+    
+    result = torch.argmax(nn.Softmax(dim=1)(preds),dim=1).data
+    return(result.data)
+
+result = predict(model,dl_valid)
+result 
+```
+
+```
+tensor([7, 2, 1,  ..., 4, 5, 6])
+```
+
+```python
+
+```
+
+**6，保存模型**
+
+```python
+print(ckpt_cb.best_model_score)
+model.load_from_checkpoint(ckpt_cb.best_model_path)
+
+best_net  = model.net
+torch.save(best_net.state_dict(),"./data/net.pt")
+```
+
+```python
+net_clone = CnnNet()
+net_clone.load_state_dict(torch.load("./data/net.pt"))
+model_clone = Model(net_clone)
+trainer = pl.Trainer()
+result = trainer.test(model_clone,test_dataloaders=dl_valid, verbose = False) 
+
+print(result)
 ```
 
 ```python

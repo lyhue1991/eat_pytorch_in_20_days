@@ -2,11 +2,16 @@
 
 Pytorch没有官方的高阶API，一般需要用户自己实现训练循环、验证循环、和预测循环。
 
-作者通过仿照tf.keras.Model的功能对Pytorch的nn.Module进行了封装，
+作者通过仿照tf.keras.Model的功能对Pytorch的nn.Module进行了封装，设计了torchkeras.Model类，
 
 实现了 fit, validate，predict, summary 方法，相当于用户自定义高阶API。
 
-并在其基础上实现线性回归模型和DNN二分类模型。
+并示范了用它实现线性回归模型。
+
+此外，作者还通过借用pytorch_lightning的功能，封装了类Keras接口的另外一种实现，即torchkeras.LightModel类。
+
+并示范了用它实现DNN二分类模型。
+
 
 
 ```python
@@ -27,7 +32,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 ### 一，线性回归模型
 
 
-此范例我们通过继承上述用户自定义 Model模型接口，实现线性回归模型。
+此范例我们通过继承torchkeras.Model模型接口，实现线性回归模型。
 
 
 **1，准备数据**
@@ -331,7 +336,8 @@ tensor([[ 2.8368],
 ### 二，DNN二分类模型
 
 
-此范例我们通过继承上述用户自定义 Model模型接口，实现DNN二分类模型。
+此范例我们通过继承torchkeras.LightModel模型接口，实现DNN二分类模型。
+
 
 
 **1，准备数据**
@@ -345,6 +351,7 @@ from torch import nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset,DataLoader,TensorDataset
 import torchkeras 
+import pytorch_lightning as pl 
 %matplotlib inline
 %config InlineBackend.figure_format = 'svg'
 
@@ -394,7 +401,6 @@ dl_valid = DataLoader(ds_valid,batch_size = 100,num_workers=2)
 **2，定义模型**
 
 ```python
-
 class Net(nn.Module):
     def __init__(self):
         super().__init__()
@@ -408,8 +414,33 @@ class Net(nn.Module):
         y = nn.Sigmoid()(self.fc3(x))
         return y
         
-model = torchkeras.Model(Net())
-model.summary(input_shape =(2,))
+class Model(torchkeras.LightModel):
+    
+    #loss,and optional metrics
+    def shared_step(self,batch)->dict:
+        x, y = batch
+        prediction = self(x)
+        loss = nn.BCELoss()(prediction,y)
+        preds = torch.where(prediction>0.5,torch.ones_like(prediction),torch.zeros_like(prediction))
+        acc = pl.metrics.functional.accuracy(preds, y)
+        # attention: there must be a key of "loss" in the returned dict 
+        dic = {"loss":loss,"acc":acc} 
+        return dic
+    
+    #optimizer,and optional lr_scheduler
+    def configure_optimizers(self):
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-2)
+        lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.0001)
+        return {"optimizer":optimizer,"lr_scheduler":lr_scheduler}
+    
+pl.seed_everything(1234)
+net = Net()
+model = Model(net)
+
+
+torchkeras.summary(model,input_shape =(2,))
+
+
 ```
 
 ```
@@ -435,75 +466,73 @@ Estimated Total Size (MB): 0.000340
 **3，训练模型**
 
 ```python
-# 准确率
-def accuracy(y_pred,y_true):
-    y_pred = torch.where(y_pred>0.5,torch.ones_like(y_pred,dtype = torch.float32),
-                      torch.zeros_like(y_pred,dtype = torch.float32))
-    acc = torch.mean(1-torch.abs(y_true-y_pred))
-    return acc
+ckpt_cb = pl.callbacks.ModelCheckpoint(monitor='val_loss')
 
-model.compile(loss_func = nn.BCELoss(),optimizer= torch.optim.Adam(model.parameters(),lr = 0.01),
-             metrics_dict={"accuracy":accuracy})
+# set gpus=0 will use cpu，
+# set gpus=1 will use 1 gpu
+# set gpus=2 will use 2gpus 
+# set gpus = -1 will use all gpus 
+# you can also set gpus = [0,1] to use the  given gpus
+# you can even set tpu_cores=2 to use two tpus 
 
-dfhistory = model.fit(100,dl_train = dl_train,dl_val = dl_valid,log_step_freq = 10)
+trainer = pl.Trainer(max_epochs=100,gpus = 0, callbacks=[ckpt_cb]) 
+
+trainer.fit(model,dl_train,dl_valid)
 
 ```
 
 ```
-Start Training ...
+================================================================================2021-01-16 23:41:38
+epoch =  0
+{'val_loss': 0.6706896424293518, 'val_acc': 0.5558333396911621}
+{'acc': 0.5157142281532288, 'loss': 0.6820458769798279}
 
-================================================================================2020-07-05 23:12:51
-{'step': 10, 'loss': 0.733, 'accuracy': 0.487}
-{'step': 20, 'loss': 0.713, 'accuracy': 0.515}
+================================================================================2021-01-16 23:41:39
+epoch =  1
+{'val_loss': 0.653035581111908, 'val_acc': 0.5708333849906921}
+{'acc': 0.5457143783569336, 'loss': 0.6677185297012329}
 
- +-------+-------+----------+----------+--------------+
-| epoch |  loss | accuracy | val_loss | val_accuracy |
-+-------+-------+----------+----------+--------------+
-|   1   | 0.704 |  0.539   |  0.676   |    0.666     |
-+-------+-------+----------+----------+--------------+
+================================================================================2021-01-16 23:41:40
+epoch =  2
+{'val_loss': 0.6122683882713318, 'val_acc': 0.6533333659172058}
+{'acc': 0.6132143139839172, 'loss': 0.6375874876976013}
 
-================================================================================2020-07-05 23:12:51
-{'step': 10, 'loss': 0.67, 'accuracy': 0.703}
-{'step': 20, 'loss': 0.66, 'accuracy': 0.697}
+================================================================================2021-01-16 23:41:40
+epoch =  3
+{'val_loss': 0.5168119668960571, 'val_acc': 0.7708333134651184}
+{'acc': 0.6842857003211975, 'loss': 0.574131190776825}
 
- +-------+------+----------+----------+--------------+
-| epoch | loss | accuracy | val_loss | val_accuracy |
-+-------+------+----------+----------+--------------+
-|   2   | 0.65 |  0.702   |  0.625   |    0.651     |
-+-------+------+----------+----------+--------------+
-================================================================================2020-07-05 23:13:10
-{'step': 10, 'loss': 0.17, 'accuracy': 0.929}
-{'step': 20, 'loss': 0.173, 'accuracy': 0.929}
+================================================================================2021-01-16 23:41:41
+epoch =  4
+{'val_loss': 0.3789764940738678, 'val_acc': 0.8766666054725647}
+{'acc': 0.7900000214576721, 'loss': 0.4608381390571594}
 
- +-------+-------+----------+----------+--------------+
-| epoch |  loss | accuracy | val_loss | val_accuracy |
-+-------+-------+----------+----------+--------------+
-|   98  | 0.175 |  0.929   |  0.169   |    0.933     |
-+-------+-------+----------+----------+--------------+
+================================================================================2021-01-16 23:41:41
+epoch =  5
+{'val_loss': 0.2496153712272644, 'val_acc': 0.9208332896232605}
+{'acc': 0.8982142806053162, 'loss': 0.3223666250705719}
 
-================================================================================2020-07-05 23:13:10
-{'step': 10, 'loss': 0.165, 'accuracy': 0.942}
-{'step': 20, 'loss': 0.171, 'accuracy': 0.932}
+================================================================================2021-01-16 23:41:42
+epoch =  6
+{'val_loss': 0.21876734495162964, 'val_acc': 0.9124999642372131}
+{'acc': 0.908214271068573, 'loss': 0.24333418905735016}
 
- +-------+-------+----------+----------+--------------+
-| epoch |  loss | accuracy | val_loss | val_accuracy |
-+-------+-------+----------+----------+--------------+
-|   99  | 0.173 |  0.931   |  0.166   |    0.935     |
-+-------+-------+----------+----------+--------------+
+================================================================================2021-01-16 23:41:43
+epoch =  7
+{'val_loss': 0.19420616328716278, 'val_acc': 0.9266666769981384}
+{'acc': 0.9132143259048462, 'loss': 0.2207658737897873}
 
-================================================================================2020-07-05 23:13:10
-{'step': 10, 'loss': 0.156, 'accuracy': 0.945}
-{'step': 20, 'loss': 0.17, 'accuracy': 0.935}
+================================================================================2021-01-16 23:41:44
+epoch =  8
+{'val_loss': 0.1835813671350479, 'val_acc': 0.9225000739097595}
+{'acc': 0.9185715317726135, 'loss': 0.20826208591461182}
 
- +-------+-------+----------+----------+--------------+
-| epoch |  loss | accuracy | val_loss | val_accuracy |
-+-------+-------+----------+----------+--------------+
-|  100  | 0.168 |  0.937   |  0.173   |    0.926     |
-+-------+-------+----------+----------+--------------+
-
-================================================================================2020-07-05 23:13:11
-Finished Training...
+================================================================================2021-01-16 23:41:45
+epoch =  9
+{'val_loss': 0.17465434968471527, 'val_acc': 0.9300000071525574}
+{'acc': 0.9189285039901733, 'loss': 0.20436131954193115}
 ```
+
 
 ```python
 # 结果可视化
@@ -527,6 +556,14 @@ ax2.set_title("y_pred");
 
 
 **4，评估模型**
+
+```python
+import pandas as pd 
+
+history = model.history
+dfhistory = pd.DataFrame(history) 
+dfhistory 
+```
 
 ```python
 %matplotlib inline
@@ -554,37 +591,46 @@ plot_metric(dfhistory,"loss")
 ![](./data/3-3-分类loss曲线.png)
 
 ```python
-plot_metric(dfhistory,"accuracy")
+plot_metric(dfhistory,"acc")
 ```
 
 ![](./data/3-3-分类acc曲线.png)
 
 ```python
-model.evaluate(dl_valid)
+results = trainer.test(model, test_dataloaders=dl_valid, verbose = False)
+print(results[0])
 ```
 
 ```
-{'val_loss': 0.17309962399303913, 'val_accuracy': 0.9258333394924799}
+{'test_loss': 0.18403057754039764, 'test_acc': 0.949999988079071}
 ```
 
+```python
+
+```
 
 **5，使用模型**
 
 ```python
-model.predict(dl_valid)[0:10]
+def predict(model,dl):
+    model.eval()
+    prediction = torch.cat([model.forward(t[0].to(model.device)) for t in dl])
+    result = torch.where(prediction>0.5,torch.ones_like(prediction),torch.zeros_like(prediction))
+    return(result.data)
+
+result = predict(model,dl_valid)
+
+result 
 ```
 
 ```
-tensor([[0.9998],
-        [0.0459],
-        [0.0349],
-        [0.0147],
-        [0.9990],
-        [0.9995],
-        [0.8535],
-        [0.0373],
-        [0.2134],
-        [0.9356]])
+tensor([[0.],
+        [0.],
+        [0.],
+        ...,
+        [1.],
+        [1.],
+        [1.]])
 
 ```
 
