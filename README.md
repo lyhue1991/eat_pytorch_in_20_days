@@ -15,6 +15,13 @@
 * 🚀 github项目地址: https://github.com/lyhue1991/eat_tensorflow2_in_30_days
 * 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5d8ef3c3037db3002d3aa3a0 【代码可直接fork后云端运行，无需配置环境】
 
+**极速通道** 
+*  🚀 公众号 “**算法美食屋**” 后台回复暗号："**吃货来了**"
+*  😋 获取以上3套教程的jupyter notebook 源码文件以及全部数据集的百度云盘下载链接。
+*  https://mp.weixin.qq.com/s/ymLtH5BqlWAkpOmCLQOYxw
+
+![image.png](./data/算法美食屋二维码.jpg)
+
 ### 一， Pytorch🔥  or TensorFlow2 🍎 
 
 先说结论:
