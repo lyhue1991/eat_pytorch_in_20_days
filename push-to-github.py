@@ -9,7 +9,7 @@
 
 # !git init
 
-# !git add  ./data/*  *.md *.py
+# !git add -A #./data/*  *.md *.py
 
 # +
 # #!rm -rf *.html
@@ -23,7 +23,7 @@
 
 # !git pull origin master 
 
-# !git push  -f origin master 
+# !git push  origin master 
 
 # !git remote rm gitee 
 
