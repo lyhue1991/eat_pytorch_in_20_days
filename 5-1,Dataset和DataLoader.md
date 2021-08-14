@@ -90,6 +90,7 @@ class Dataset(object):
 class DataLoader(object):
     def __init__(self,dataset,batch_size,collate_fn,shuffle = True,drop_last = False):
         self.dataset = dataset
+        self.collate_fn = collate_fn
         self.sampler =torch.utils.data.RandomSampler if shuffle else \
            torch.utils.data.SequentialSampler
         self.batch_sampler = torch.utils.data.BatchSampler
