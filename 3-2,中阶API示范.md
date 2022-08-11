@@ -19,6 +19,15 @@ os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 ```
 
 ```python
+import torch 
+print("torch.__version__="+torch.__version__) 
+```
+
+```
+torch.__version__=1.10.0
+```
+
+```python
 
 ```
 
@@ -87,7 +96,7 @@ dl = DataLoader(ds,batch_size = 10,shuffle=True,num_workers=2)
 ```python
 model = nn.Linear(2,1) #线性层
 
-model.loss_func = nn.MSELoss()
+model.loss_fn = nn.MSELoss()
 model.optimizer = torch.optim.SGD(model.parameters(),lr = 0.01)
 
 ```
@@ -102,7 +111,7 @@ model.optimizer = torch.optim.SGD(model.parameters(),lr = 0.01)
 def train_step(model, features, labels):
     
     predictions = model(features)
-    loss = model.loss_func(predictions,labels)
+    loss = model.loss_fn(predictions,labels)
     loss.backward()
     model.optimizer.step()
     model.optimizer.zero_grad()
@@ -124,37 +133,42 @@ def train_model(model,epochs):
     for epoch in range(1,epochs+1):
         for features, labels in dl:
             loss = train_step(model,features,labels)
-        if epoch%50==0:
+        if epoch%10==0:
             printbar()
             w = model.state_dict()["weight"]
             b = model.state_dict()["bias"]
             print("epoch =",epoch,"loss = ",loss)
             print("w =",w)
             print("b =",b)
-train_model(model,epochs = 200)
+train_model(model,epochs = 50)
 
 ```
 
 ```
-================================================================================2020-07-05 22:51:53
-epoch = 50 loss =  3.0177409648895264
-w = tensor([[ 1.9315, -2.9573]])
-b = tensor([9.9625])
+================================================================================2022-07-16 18:03:53
+epoch = 10 loss =  5.537785053253174
+w = tensor([[ 1.9881, -3.0584]])
+b = tensor([10.0856])
 
-================================================================================2020-07-05 22:51:57
-epoch = 100 loss =  2.1144354343414307
-w = tensor([[ 1.9760, -2.9398]])
-b = tensor([9.9428])
+================================================================================2022-07-16 18:04:13
+epoch = 20 loss =  3.881025791168213
+w = tensor([[ 1.8880, -2.9631]])
+b = tensor([10.0707])
 
-================================================================================2020-07-05 22:52:01
-epoch = 150 loss =  3.290461778640747
-w = tensor([[ 2.1075, -2.9509]])
-b = tensor([9.9599])
+================================================================================2022-07-16 18:04:32
+epoch = 30 loss =  6.192954063415527
+w = tensor([[ 2.0208, -2.9988]])
+b = tensor([10.0903])
 
-================================================================================2020-07-05 22:52:06
-epoch = 200 loss =  3.047853469848633
-w = tensor([[ 2.1134, -2.9306]])
-b = tensor([9.9722])
+================================================================================2022-07-16 18:04:51
+epoch = 40 loss =  5.026132106781006
+w = tensor([[ 2.0422, -2.9166]])
+b = tensor([10.1006])
+
+================================================================================2022-07-16 18:05:09
+epoch = 50 loss =  3.067345142364502
+w = tensor([[ 1.9470, -3.0395]])
+b = tensor([10.0620])
 ```
 
 ```python
@@ -271,11 +285,11 @@ class DNNModel(nn.Module):
         return y
     
     # 损失函数
-    def loss_func(self,y_pred,y_true):
+    def loss_fn(self,y_pred,y_true):
         return nn.BCELoss()(y_pred,y_true)
     
     # 评估函数(准确率)
-    def metric_func(self,y_pred,y_true):
+    def metric_fn(self,y_pred,y_true):
         y_pred = torch.where(y_pred>0.5,torch.ones_like(y_pred,dtype = torch.float32),
                           torch.zeros_like(y_pred,dtype = torch.float32))
         acc = torch.mean(1-torch.abs(y_true-y_pred))
@@ -295,8 +309,8 @@ model = DNNModel()
 (features,labels) = next(iter(dl))
 predictions = model(features)
 
-loss = model.loss_func(predictions,labels)
-metric = model.metric_func(predictions,labels)
+loss = model.loss_fn(predictions,labels)
+metric = model.metric_fn(predictions,labels)
 
 print("init loss:",loss.item())
 print("init metric:",metric.item())
@@ -319,8 +333,8 @@ def train_step(model, features, labels):
     
     # 正向传播求损失
     predictions = model(features)
-    loss = model.loss_func(predictions,labels)
-    metric = model.metric_func(predictions,labels)
+    loss = model.loss_fn(predictions,labels)
+    metric = model.metric_fn(predictions,labels)
     
     # 反向传播求梯度
     loss.backward()
@@ -352,22 +366,28 @@ def train_model(model,epochs):
         loss = np.mean(loss_list)
         metric = np.mean(metric_list)
 
-        if epoch%100==0:
+        if epoch%10==0:
             printbar()
             print("epoch =",epoch,"loss = ",loss,"metric = ",metric)
         
-train_model(model,epochs = 300)
+train_model(model,epochs = 50)
 ```
 
 ```
-================================================================================2020-07-05 22:56:38
-epoch = 100 loss =  0.23532892110607917 metric =  0.934749992787838
+================================================================================2022-07-16 18:06:47
+epoch = 10 loss =  0.266319769853726 metric =  0.9034999929368496
 
-================================================================================2020-07-05 22:58:18
-epoch = 200 loss =  0.24743918558603128 metric =  0.934999993443489
+================================================================================2022-07-16 18:07:13
+epoch = 20 loss =  0.21627795644046274 metric =  0.9099999918043613
 
-================================================================================2020-07-05 22:59:56
-epoch = 300 loss =  0.2936080049697884 metric =  0.931499992609024
+================================================================================2022-07-16 18:07:40
+epoch = 30 loss =  0.23485902241198345 metric =  0.9142499916255474
+
+================================================================================2022-07-16 18:08:06
+epoch = 40 loss =  0.24796139190076247 metric =  0.9192499934136867
+
+================================================================================2022-07-16 18:08:33
+epoch = 50 loss =  0.2608402820147239 metric =  0.9224999941885471
 ```
 
 ```python
@@ -404,4 +424,4 @@ ax2.set_title("y_pred");
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![算法美食屋logo.png](./data/算法美食屋二维码.jpg)
+![算法美食屋logo.png](https://tva1.sinaimg.cn/large/e6c9d24egy1h41m2zugguj20k00b9q46.jpg)

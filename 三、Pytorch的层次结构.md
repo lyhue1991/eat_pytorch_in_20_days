@@ -17,13 +17,16 @@ Pytorch的层次结构从低到高可以分成如下五层。
 如torch.nn.Linear,torch.nn.BCE,torch.optim.Adam,torch.utils.data.DataLoader.
 如果把模型比作一个房子，那么第四层API就是【模型之墙】。
 
-第五层为Python实现的模型接口。Pytorch没有官方的高阶API。为了便于训练模型，作者仿照keras中的模型接口，使用了不到300行代码，封装了Pytorch的高阶模型接口torchkeras.Model。如果把模型比作一个房子，那么第五层API就是模型本身，即【模型之屋】。
+第五层为Python实现的模型接口。Pytorch没有官方的高阶API。为了便于训练模型，作者仿照keras中的模型接口，使用了不到300行代码，封装了pytorch的高阶模型接口torchkeras.KerasModel。此外，有一个非常流行的非官方Pytorch的高阶API库，叫做pytorch_lightning,作者通过引用和借鉴它的一些能力，设计了一个和torchkeras.KerasModel功能类似的高阶模型接口torchkeras.LightModel，功能更加强大。如果把模型比作一个房子，那么第五层API就是模型本身，即【模型之屋】。
 
 
+<!-- #region -->
 **如果本书对你有所帮助，想鼓励一下作者，记得给本项目加一颗星星star⭐️，并分享给你的朋友们喔😊!** 
 
 如果对本书内容理解上有需要进一步和作者交流的地方，欢迎在公众号"算法美食屋"下留言。作者时间和精力有限，会酌情予以回复。
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![算法美食屋logo.png](./data/算法美食屋二维码.jpg)
+
+![算法美食屋logo.png](https://tva1.sinaimg.cn/large/e6c9d24egy1h41m2zugguj20k00b9q46.jpg)
+<!-- #endregion -->

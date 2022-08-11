@@ -11,9 +11,32 @@ DataLoader能够控制batch的大小，batch中元素的采样方法，以及将
 在绝大部分情况下，用户只需实现Dataset的`__len__`方法和`__getitem__`方法，就可以轻松构建自己的数据集，并用默认数据管道进行加载。
 
 
+
+
 ```python
+import torch 
+import torchvision
+
+print("torch.__version__="+torch.__version__) 
+print("torchvision.__version__="+torchvision.__version__) 
 
 ```
+
+```
+torch.__version__=1.10.0
+torchvision.__version__=0.11.2
+```
+
+
+<br>
+
+<font color="red">
+ 
+公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目源码和所用数据集百度云盘下载链接。
+    
+</font> 
+
+
 
 ### 一，Dataset和DataLoader概述
 
@@ -146,8 +169,8 @@ ds_iris = TensorDataset(torch.tensor(iris.data),torch.tensor(iris.target))
 
 # 分割成训练集和预测集
 n_train = int(len(ds_iris)*0.8)
-n_valid = len(ds_iris) - n_train
-ds_train,ds_valid = random_split(ds_iris,[n_train,n_valid])
+n_val = len(ds_iris) - n_train
+ds_train,ds_val = random_split(ds_iris,[n_train,n_val])
 
 print(type(ds_iris))
 print(type(ds_train))
@@ -156,7 +179,7 @@ print(type(ds_train))
 
 ```python
 # 使用DataLoader加载数据集
-dl_train,dl_valid = DataLoader(ds_train,batch_size = 8),DataLoader(ds_valid,batch_size = 8)
+dl_train,dl_val = DataLoader(ds_train,batch_size = 8),DataLoader(ds_val,batch_size = 8)
 
 for features,labels in dl_train:
     print(features,labels)
@@ -166,10 +189,10 @@ for features,labels in dl_train:
 ```python
 # 演示加法运算符（`+`）的合并作用
 
-ds_data = ds_train + ds_valid
+ds_data = ds_train + ds_val
 
 print('len(ds_train) = ',len(ds_train))
-print('len(ds_valid) = ',len(ds_valid))
+print('len(ds_valid) = ',len(ds_val))
 print('len(ds_train+ds_valid) = ',len(ds_data))
 
 print(type(ds_data))
@@ -236,32 +259,34 @@ transform_valid = transforms.Compose([
 
 ```python
 # 根据图片目录创建数据集
-ds_train = datasets.ImageFolder("./data/cifar2/train/",
-            transform = transform_train,target_transform= lambda t:torch.tensor([t]).float())
-ds_valid = datasets.ImageFolder("./data/cifar2/test/",
-            transform = transform_train,target_transform= lambda t:torch.tensor([t]).float())
+
+def transform_label(x):
+    return torch.tensor([x]).float()
+
+ds_train = datasets.ImageFolder("./eat_pytorch_datasets/cifar2/train/",
+            transform = transform_train,target_transform= transform_label)
+ds_val = datasets.ImageFolder("./eat_pytorch_datasets/cifar2/test/",
+
 
 print(ds_train.class_to_idx)
 
+# 使用DataLoader加载数据集
+
+dl_train = DataLoader(ds_train,batch_size = 50,shuffle = True)
+dl_val = DataLoader(ds_val,batch_size = 50,shuffle = True)
+
+
+for features,labels in dl_train:
+    print(features.shape)
+    print(labels.shape)
+    break
+    
 ```
 
 ```
 {'0_airplane': 0, '1_automobile': 1}
 ```
 
-```python
-# 使用DataLoader加载数据集
-
-dl_train = DataLoader(ds_train,batch_size = 50,shuffle = True,num_workers=3)
-dl_valid = DataLoader(ds_valid,batch_size = 50,shuffle = True,num_workers=3)
-```
-
-```python
-for features,labels in dl_train:
-    print(features.shape)
-    print(labels.shape)
-    break
-```
 
 ```
 torch.Size([50, 3, 32, 32])
@@ -294,12 +319,15 @@ MAX_WORDS = 10000  # 仅考虑最高频的10000个词
 MAX_LEN = 200  # 每个样本保留200个词的长度
 BATCH_SIZE = 20 
 
-train_data_path = 'data/imdb/train.tsv'
-test_data_path = 'data/imdb/test.tsv'
-train_token_path = 'data/imdb/train_token.tsv'
-test_token_path =  'data/imdb/test_token.tsv'
-train_samples_path = 'data/imdb/train_samples/'
-test_samples_path =  'data/imdb/test_samples/'
+
+train_data_path = 'eat_pytorch_datasets/imdb/train.tsv'
+test_data_path = 'eat_pytorch_datasets/imdb/test.tsv'
+train_token_path = 'eat_pytorch_datasets/imdb/train_token.tsv'
+test_token_path =  'eat_pytorch_datasets/imdb/test_token.tsv'
+train_samples_path = 'eat_pytorch_datasets/imdb/train_samples/'
+test_samples_path =  'eat_pytorch_datasets/imdb/test_samples/'
+
+
 ```
 
 首先我们构建词典，并保留最高频的MAX_WORDS个词。
@@ -391,6 +419,7 @@ def split_samples(token_path,samples_dir):
 
 split_samples(train_token_path,train_samples_path)
 split_samples(test_token_path,test_samples_path)
+
 ```
 
 ```python
@@ -406,6 +435,7 @@ print(os.listdir(train_samples_path)[0:100])
 
 ```python
 import os
+
 class imdbDataset(Dataset):
     def __init__(self,samples_dir):
         self.samples_dir = samples_dir
@@ -441,13 +471,13 @@ print(len(ds_test))
 ```
 
 ```python
-dl_train = DataLoader(ds_train,batch_size = BATCH_SIZE,shuffle = True,num_workers=4)
-dl_test = DataLoader(ds_test,batch_size = BATCH_SIZE,num_workers=4)
+dl_train = DataLoader(ds_train,batch_size = BATCH_SIZE,shuffle = True)
+dl_test = DataLoader(ds_test,batch_size = BATCH_SIZE)
 
 for features,labels in dl_train:
-    print(features)
-    print(labels)
     break
+print(features)
+print(labels)
 ```
 
 ```
@@ -486,10 +516,8 @@ tensor([[1.],
 ```python
 import torch
 from torch import nn 
-import importlib 
-from torchkeras import Model,summary
 
-class Net(Model):
+class Net(nn.Module):
     
     def __init__(self):
         super(Net, self).__init__()
@@ -507,7 +535,6 @@ class Net(Model):
         self.dense = nn.Sequential()
         self.dense.add_module("flatten",nn.Flatten())
         self.dense.add_module("linear",nn.Linear(6144,1))
-        self.dense.add_module("sigmoid",nn.Sigmoid())
         
     def forward(self,x):
         x = self.embedding(x).transpose(1,2)
@@ -515,11 +542,12 @@ class Net(Model):
         y = self.dense(x)
         return y
         
-model = Net()
-print(model)
+net = Net()
 
-model.summary(input_shape = (200,),input_dtype = torch.LongTensor)
 
+preds = net(features)
+print(net)
+print(preds)
 ```
 
 ```
@@ -534,99 +562,77 @@ Net(
     (relu_2): ReLU()
   )
   (dense): Sequential(
-    (flatten): Flatten()
+    (flatten): Flatten(start_dim=1, end_dim=-1)
     (linear): Linear(in_features=6144, out_features=1, bias=True)
-    (sigmoid): Sigmoid()
   )
 )
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-         Embedding-1               [-1, 200, 3]          30,000
-            Conv1d-2              [-1, 16, 196]             256
-         MaxPool1d-3               [-1, 16, 98]               0
-              ReLU-4               [-1, 16, 98]               0
-            Conv1d-5              [-1, 128, 97]           4,224
-         MaxPool1d-6              [-1, 128, 48]               0
-              ReLU-7              [-1, 128, 48]               0
-           Flatten-8                 [-1, 6144]               0
-            Linear-9                    [-1, 1]           6,145
-          Sigmoid-10                    [-1, 1]               0
-================================================================
-Total params: 40,625
-Trainable params: 40,625
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.000763
-Forward/backward pass size (MB): 0.287796
-Params size (MB): 0.154972
-Estimated Total Size (MB): 0.443531
-----------------------------------------------------------------
+tensor([[-0.1576],
+        [-0.2841],
+        [-0.1405],
+        [-0.0690],
+        [-0.0520],
+        [-0.2680],
+        [-0.1689],
+        [-0.0814],
+        [-0.1718],
+        [-0.1264],
+        [-0.1674],
+        [-0.1763],
+        [-0.1537],
+        [-0.2502],
+        [-0.1983],
+        [-0.0943],
+        [-0.0087],
+        [-0.2154],
+        [-0.1263],
+        [-0.0274]], grad_fn=<AddmmBackward0>)
 ```
 
 ```python
-# 编译模型
-def accuracy(y_pred,y_true):
-    y_pred = torch.where(y_pred>0.5,torch.ones_like(y_pred,dtype = torch.float32),
-                      torch.zeros_like(y_pred,dtype = torch.float32))
-    acc = torch.mean(1-torch.abs(y_true-y_pred))
-    return acc
+from torchkeras import KerasModel 
+from torchkeras.metrics import Accuracy
 
-model.compile(loss_func = nn.BCELoss(),optimizer= torch.optim.Adagrad(model.parameters(),lr = 0.02),
-             metrics_dict={"accuracy":accuracy})
-
+net = Net() 
+model = KerasModel(net,
+                  loss_fn = nn.BCEWithLogitsLoss(),
+                  optimizer= torch.optim.Adam(net.parameters(),lr = 0.005),  
+                  metrics_dict = {"acc":Accuracy()}
+                )
+model.fit(dl_train,
+    val_data=dl_test,
+    epochs=10,
+    ckpt_path='checkpoint.pt',
+    patience=3,
+    monitor='val_acc',
+    mode='max')
 ```
 
-```python
-# 训练模型
-dfhistory = model.fit(10,dl_train,dl_val=dl_test,log_step_freq= 200)
 ```
+================================================================================2022-07-17 15:13:03
+Epoch 4 / 10
 
-```
-Start Training ...
+100%|██████████| 1000/1000 [00:16<00:00, 59.53it/s, train_acc=0.907, train_loss=0.237]
+100%|██████████| 250/250 [00:02<00:00, 107.14it/s, val_acc=0.87, val_loss=0.318] 
+<<<<<< reach best val_acc : 0.8704000115394592 >>>>>>
 
-================================================================================2020-07-11 23:21:53
-{'step': 200, 'loss': 0.956, 'accuracy': 0.521}
-{'step': 400, 'loss': 0.823, 'accuracy': 0.53}
-{'step': 600, 'loss': 0.774, 'accuracy': 0.545}
-{'step': 800, 'loss': 0.747, 'accuracy': 0.56}
-{'step': 1000, 'loss': 0.726, 'accuracy': 0.572}
+================================================================================2022-07-17 15:13:22
+Epoch 5 / 10
 
- +-------+-------+----------+----------+--------------+
-| epoch |  loss | accuracy | val_loss | val_accuracy |
-+-------+-------+----------+----------+--------------+
-|   1   | 0.726 |  0.572   |  0.661   |    0.613     |
-+-------+-------+----------+----------+--------------+
+100%|██████████| 1000/1000 [00:17<00:00, 58.38it/s, train_acc=0.928, train_loss=0.19]
+100%|██████████| 250/250 [00:02<00:00, 101.77it/s, val_acc=0.87, val_loss=0.338] 
 
-================================================================================2020-07-11 23:22:20
-{'step': 200, 'loss': 0.605, 'accuracy': 0.668}
-{'step': 400, 'loss': 0.602, 'accuracy': 0.674}
-{'step': 600, 'loss': 0.592, 'accuracy': 0.681}
-{'step': 800, 'loss': 0.584, 'accuracy': 0.687}
-{'step': 1000, 'loss': 0.575, 'accuracy': 0.696}
+================================================================================2022-07-17 15:13:42
+Epoch 6 / 10
 
- +-------+-------+----------+----------+--------------+
-| epoch |  loss | accuracy | val_loss | val_accuracy |
-+-------+-------+----------+----------+--------------+
-|   2   | 0.575 |  0.696   |  0.553   |    0.716     |
-+-------+-------+----------+----------+--------------+
+100%|██████████| 1000/1000 [00:16<00:00, 59.51it/s, train_acc=0.942, train_loss=0.153]
+100%|██████████| 250/250 [00:02<00:00, 104.84it/s, val_acc=0.856, val_loss=0.41] 
 
-================================================================================2020-07-11 23:25:53
-{'step': 200, 'loss': 0.294, 'accuracy': 0.877}
-{'step': 400, 'loss': 0.299, 'accuracy': 0.875}
-{'step': 600, 'loss': 0.298, 'accuracy': 0.875}
-{'step': 800, 'loss': 0.296, 'accuracy': 0.876}
-{'step': 1000, 'loss': 0.298, 'accuracy': 0.875}
+================================================================================2022-07-17 15:14:01
+Epoch 7 / 10
 
- +-------+-------+----------+----------+--------------+
-| epoch |  loss | accuracy | val_loss | val_accuracy |
-+-------+-------+----------+----------+--------------+
-|   10  | 0.298 |  0.875   |  0.464   |    0.795     |
-+-------+-------+----------+----------+--------------+
-
-================================================================================2020-07-11 23:26:19
-Finished Training...
-
+100%|██████████| 1000/1000 [00:17<00:00, 58.78it/s, train_acc=0.954, train_loss=0.123]
+100%|██████████| 250/250 [00:02<00:00, 104.06it/s, val_acc=0.863, val_loss=0.428]
+<<<<<< val_acc without improvement in 3 epoch, early stopping >>>>>>
 ```
 
 ```python
@@ -707,7 +713,7 @@ tensor([ 1, 29, 11, 47, 12, 22, 48, 42, 10,  7])
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![算法美食屋logo.png](./data/算法美食屋二维码.jpg)
+![算法美食屋logo.png](https://tva1.sinaimg.cn/large/e6c9d24egy1h41m2zugguj20k00b9q46.jpg)
 
 ```python
 

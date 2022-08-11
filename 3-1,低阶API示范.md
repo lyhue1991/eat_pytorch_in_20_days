@@ -18,6 +18,19 @@ os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 ```
 
+```python
+import torch 
+print("torch.__version__="+torch.__version__) 
+```
+
+```
+torch.__version__=1.10.0
+```
+
+```python
+
+```
+
 ### 一，线性回归模型
 
 
@@ -119,7 +132,7 @@ class LinearRegression:
         return x@self.w + self.b
 
     # 损失函数
-    def loss_func(self,y_pred,y_true):  
+    def loss_fn(self,y_pred,y_true):  
         return torch.mean((y_pred - y_true)**2/2)
 
 model = LinearRegression()
@@ -136,7 +149,7 @@ model = LinearRegression()
 def train_step(model, features, labels):
     
     predictions = model.forward(features)
-    loss = model.loss_func(predictions,labels)
+    loss = model.loss_fn(predictions,labels)
         
     # 反向传播求梯度
     loss.backward()
@@ -241,6 +254,7 @@ plt.xlabel("x2")
 plt.ylabel("y",rotation = 0)
 
 plt.show()
+
 ```
 
 ![](./data/3-1-回归结果可视化.png)
@@ -361,7 +375,7 @@ class DNNModel(nn.Module):
         return y
     
     # 损失函数(二元交叉熵)
-    def loss_func(self,y_pred,y_true):  
+    def loss_fn(self,y_pred,y_true):  
         #将预测值限制在1e-7以上, 1- (1e-7)以下，避免log(0)错误
         eps = 1e-7
         y_pred = torch.clamp(y_pred,eps,1.0-eps)
@@ -369,7 +383,7 @@ class DNNModel(nn.Module):
         return torch.mean(bce)
     
     # 评估指标(准确率)
-    def metric_func(self,y_pred,y_true):
+    def metric_fn(self,y_pred,y_true):
         y_pred = torch.where(y_pred>0.5,torch.ones_like(y_pred,dtype = torch.float32),
                           torch.zeros_like(y_pred,dtype = torch.float32))
         acc = torch.mean(1-torch.abs(y_true-y_pred))
@@ -386,8 +400,8 @@ batch_size = 10
 
 predictions = model(features)
 
-loss = model.loss_func(labels,predictions)
-metric = model.metric_func(labels,predictions)
+loss = model.loss_fn(labels,predictions)
+metric = model.metric_fn(labels,predictions)
 
 print("init loss:", loss.item())
 print("init metric:", metric.item())
@@ -415,8 +429,8 @@ def train_step(model, features, labels):
     
     # 正向传播求损失
     predictions = model.forward(features)
-    loss = model.loss_func(predictions,labels)
-    metric = model.metric_func(predictions,labels)
+    loss = model.loss_fn(predictions,labels)
+    metric = model.metric_fn(predictions,labels)
         
     # 反向传播求梯度
     loss.backward()
@@ -512,4 +526,4 @@ ax2.set_title("y_pred");
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![算法美食屋logo.png](./data/算法美食屋二维码.jpg)
+![算法美食屋logo.png](https://tva1.sinaimg.cn/large/e6c9d24egy1h41m2zugguj20k00b9q46.jpg)

@@ -1,10 +1,11 @@
+<!-- #region -->
 # 3-3,高阶API示范
 
 Pytorch没有官方的高阶API，一般需要用户自己实现训练循环、验证循环、和预测循环。
 
-作者通过仿照tf.keras.Model的功能对Pytorch的nn.Module进行了封装，设计了torchkeras.Model类，
+作者通过仿照keras的功能对Pytorch的nn.Module进行了封装，设计了torchkeras.KerasModel类，
 
-实现了 fit, validate，predict, summary 方法，相当于用户自定义高阶API。
+实现了 fit, evaluate，predict等方法，相当于用户自定义高阶API。
 
 并示范了用它实现线性回归模型。
 
@@ -13,11 +14,21 @@ Pytorch没有官方的高阶API，一般需要用户自己实现训练循环、�
 并示范了用它实现DNN二分类模型。
 
 
+torchkeras.KerasModel类和torchkeras.LightModel类看起来非常强大，但实际上它们的源码非常简单，不足200行。
+我们在第一章中`一、Pytorch的建模流程`用到的训练代码其实就是torchkeras库的核心源码。
+
+在实际应用中，由于有些模型的输入输出以及Loss结构和torchkeras的假设结构有所不同，直接调用torchkeras可能不能满足需求，不要害怕，copy出来
+torchkeras.KerasModel或者torchkeras.LightModel的源码，在输入输出和Loss上简单改动一下就可以。
+
+<!-- #endregion -->
+
+```python
+
+```
 
 ```python
 import os
 import datetime
-from torchkeras import Model, summary
 
 #打印时间
 def printbar():
@@ -26,6 +37,28 @@ def printbar():
 
 #mac系统上pytorch和matplotlib在jupyter中同时跑需要更改环境变量
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE" 
+
+```
+
+```python
+!pip install torchkeras==3.2.2 -i https://pypi.python.org/simple
+```
+
+```python
+import torch 
+import torchkeras 
+
+
+print("torch.__version__="+torch.__version__) 
+print("torchkeras.__version__="+torchkeras.__version__) 
+```
+
+```
+torch.__version__=1.10.0
+torchkeras.__version__=3.2.2
+```
+
+```python
 
 ```
 
@@ -84,9 +117,11 @@ plt.show()
 ```python
 #构建输入数据管道
 ds = TensorDataset(X,Y)
-ds_train,ds_valid = torch.utils.data.random_split(ds,[int(400*0.7),400-int(400*0.7)])
+ds_train,ds_val = torch.utils.data.random_split(ds,[int(400*0.7),400-int(400*0.7)])
 dl_train = DataLoader(ds_train,batch_size = 10,shuffle=True,num_workers=2)
-dl_valid = DataLoader(ds_valid,batch_size = 10,num_workers=2)
+dl_val = DataLoader(ds_val,batch_size = 10,num_workers=2)
+
+features,labels = next(iter(dl_train))
 
 ```
 
@@ -97,9 +132,7 @@ dl_valid = DataLoader(ds_valid,batch_size = 10,num_workers=2)
 **2，定义模型**
 
 ```python
-# 继承用户自定义模型
-from torchkeras import Model
-class LinearRegression(Model):
+class LinearRegression(nn.Module):
     def __init__(self):
         super(LinearRegression, self).__init__()
         self.fc = nn.Linear(2,1)
@@ -107,29 +140,32 @@ class LinearRegression(Model):
     def forward(self,x):
         return self.fc(x)
 
-model = LinearRegression()
+net = LinearRegression()
 
 ```
 
 ```python
-model.summary(input_shape = (2,))
+
+from torchkeras import summary 
+
+summary(net,input_data=features);
 ```
 
 ```
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-            Linear-1                    [-1, 1]               3
-================================================================
+--------------------------------------------------------------------------
+Layer (type)                            Output Shape              Param #
+==========================================================================
+Linear-1                                     [-1, 1]                    3
+==========================================================================
 Total params: 3
 Trainable params: 3
 Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.000008
+--------------------------------------------------------------------------
+Input size (MB): 0.000069
 Forward/backward pass size (MB): 0.000008
 Params size (MB): 0.000011
-Estimated Total Size (MB): 0.000027
-----------------------------------------------------------------
+Estimated Total Size (MB): 0.000088
+--------------------------------------------------------------------------
 ```
 
 ```python
@@ -139,72 +175,24 @@ Estimated Total Size (MB): 0.000027
 **3，训练模型**
 
 ```python
-### 使用fit方法进行训练
+from torchkeras import KerasModel 
 
-def mean_absolute_error(y_pred,y_true):
-    return torch.mean(torch.abs(y_pred-y_true))
+import torchmetrics
 
-def mean_absolute_percent_error(y_pred,y_true):
-    absolute_percent_error = (torch.abs(y_pred-y_true)+1e-7)/(torch.abs(y_true)+1e-7)
-    return torch.mean(absolute_percent_error)
+net = LinearRegression()
+model = KerasModel(net=net,
+                   loss_fn = nn.MSELoss(),
+                   metrics_dict = {"mae":torchmetrics.MeanAbsoluteError()},
+                   optimizer= torch.optim.Adam(net.parameters(),lr = 0.05))
 
-model.compile(loss_func = nn.MSELoss(),
-              optimizer= torch.optim.Adam(model.parameters(),lr = 0.01),
-              metrics_dict={"mae":mean_absolute_error,"mape":mean_absolute_percent_error})
+dfhistory = model.fit(train_data=dl_train,
+      val_data=dl_val,
+      epochs=20,
+      ckpt_path='checkpoint.pt',
+      patience=5,
+      monitor='val_loss',
+      mode='min')
 
-dfhistory = model.fit(200,dl_train = dl_train, dl_val = dl_valid,log_step_freq = 20)
-
-```
-
-```
-Start Training ...
-
-================================================================================2020-07-05 23:07:25
-{'step': 20, 'loss': 226.768, 'mae': 12.198, 'mape': 1.212}
-
- +-------+---------+-------+-------+----------+---------+----------+
-| epoch |   loss  |  mae  |  mape | val_loss | val_mae | val_mape |
-+-------+---------+-------+-------+----------+---------+----------+
-|   1   | 230.773 | 12.41 | 1.394 | 223.262  |  12.582 |  1.095   |
-+-------+---------+-------+-------+----------+---------+----------+
-
-================================================================================2020-07-05 23:07:26
-{'step': 20, 'loss': 200.964, 'mae': 11.584, 'mape': 1.382}
-
- +-------+---------+--------+------+----------+---------+----------+
-| epoch |   loss  |  mae   | mape | val_loss | val_mae | val_mape |
-+-------+---------+--------+------+----------+---------+----------+
-|   2   | 206.238 | 11.759 | 1.26 | 199.669  |  11.895 |  1.012   |
-+-------+---------+--------+------+----------+---------+----------+
-
-================================================================================2020-07-05 23:07:26
-{'step': 20, 'loss': 188.247, 'mae': 11.387, 'mape': 1.172}
-
- +-------+---------+--------+-------+----------+---------+----------+
-| epoch |   loss  |  mae   |  mape | val_loss | val_mae | val_mape |
-+-------+---------+--------+-------+----------+---------+----------+
-|   3   | 185.185 | 11.177 | 1.189 | 178.112  |  11.24  |  0.952   |
-+-------+---------+--------+-------+----------+---------+----------+
-================================================================================2020-07-05 23:07:59
-{'step': 20, 'loss': 4.14, 'mae': 1.677, 'mape': 1.845}
-
- +-------+-------+-------+-------+----------+---------+----------+
-| epoch |  loss |  mae  |  mape | val_loss | val_mae | val_mape |
-+-------+-------+-------+-------+----------+---------+----------+
-|  199  | 4.335 | 1.707 | 1.441 |  3.741   |  1.533  |  0.359   |
-+-------+-------+-------+-------+----------+---------+----------+
-
-================================================================================2020-07-05 23:07:59
-{'step': 20, 'loss': 4.653, 'mae': 1.775, 'mape': 0.679}
-
- +-------+------+-------+-------+----------+---------+----------+
-| epoch | loss |  mae  |  mape | val_loss | val_mae | val_mape |
-+-------+------+-------+-------+----------+---------+----------+
-|  200  | 4.37 | 1.718 | 1.394 |  3.749   |  1.534  |  0.363   |
-+-------+------+-------+-------+----------+---------+----------+
-
-================================================================================2020-07-05 23:07:59
-Finished Training...
 ```
 
 ```python
@@ -213,7 +201,7 @@ Finished Training...
 %matplotlib inline
 %config InlineBackend.figure_format = 'svg'
 
-w,b = model.state_dict()["fc.weight"],model.state_dict()["fc.bias"]
+w,b = net.state_dict()["fc.weight"],net.state_dict()["fc.bias"]
 
 plt.figure(figsize = (12,5))
 ax1 = plt.subplot(121)
@@ -241,7 +229,18 @@ plt.show()
 dfhistory.tail()
 ```
 
-![](./data/3-3-dfhistory.png)
+```
+	train_loss	train_mae	val_loss	val_mae	epoch
+15	4.339620	1.635648	3.119237	1.384351	16
+16	4.313104	1.631849	2.999482	1.352427	17
+17	4.319547	1.628811	3.022779	1.355054	18
+18	4.315403	1.636815	3.087339	1.369488	19
+19	4.266822	1.627701	2.937751	1.330670	20
+```
+
+```python
+
+```
 
 ```python
 %matplotlib inline
@@ -250,7 +249,7 @@ dfhistory.tail()
 import matplotlib.pyplot as plt
 
 def plot_metric(dfhistory, metric):
-    train_metrics = dfhistory[metric]
+    train_metrics = dfhistory["train_"+metric]
     val_metrics = dfhistory['val_'+metric]
     epochs = range(1, len(train_metrics) + 1)
     plt.plot(epochs, train_metrics, 'bo--')
@@ -270,20 +269,18 @@ plot_metric(dfhistory,"loss")
 ![](./data/3-3-loss曲线.png)
 
 ```python
-plot_metric(dfhistory,"mape")
+plot_metric(dfhistory,"mae")
 ```
 
 ![](./data/3-3-mape曲线.png)
 
 ```python
 # 评估
-model.evaluate(dl_valid)
+model.evaluate(dl_val)
 ```
 
 ```
-{'val_loss': 3.749117374420166,
- 'val_mae': 1.5336137612660725,
- 'val_mape': 0.36319838215907413}
+{'val_loss': 2.9377514322598777, 'val_mae': 1.3306695222854614}
 ```
 
 ```python
@@ -313,20 +310,20 @@ tensor([[ 3.9212],
 
 ```python
 # 预测
-model.predict(dl_valid)[0:10]
+model.predict(dl_val)[0:10]
 ```
 
 ```
-tensor([[ 2.8368],
-        [16.2797],
-        [ 2.3135],
-        [ 9.5395],
-        [16.4363],
-        [10.0742],
-        [15.0864],
-        [12.9775],
-        [21.8568],
-        [21.8226]])
+tensor([[-11.0324],
+        [ 26.2708],
+        [ 24.8866],
+        [ 12.2698],
+        [-12.0984],
+        [  6.7254],
+        [ 12.8081],
+        [ 20.6977],
+        [  5.4715],
+        [  2.0188]])
 ```
 
 ```python
@@ -388,9 +385,9 @@ plt.legend(["positive","negative"]);
 ```python
 ds = TensorDataset(X,Y)
 
-ds_train,ds_valid = torch.utils.data.random_split(ds,[int(len(ds)*0.7),len(ds)-int(len(ds)*0.7)])
+ds_train,ds_val = torch.utils.data.random_split(ds,[int(len(ds)*0.7),len(ds)-int(len(ds)*0.7)])
 dl_train = DataLoader(ds_train,batch_size = 100,shuffle=True,num_workers=2)
-dl_valid = DataLoader(ds_valid,batch_size = 100,num_workers=2)
+dl_val = DataLoader(ds_val,batch_size = 100,num_workers=2)
 
 ```
 
@@ -411,126 +408,95 @@ class Net(nn.Module):
     def forward(self,x):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
-        y = nn.Sigmoid()(self.fc3(x))
+        y = self.fc3(x)
         return y
-        
-class Model(torchkeras.LightModel):
     
-    #loss,and optional metrics
-    def shared_step(self,batch)->dict:
-        x, y = batch
-        prediction = self(x)
-        loss = nn.BCELoss()(prediction,y)
-        preds = torch.where(prediction>0.5,torch.ones_like(prediction),torch.zeros_like(prediction))
-        acc = pl.metrics.functional.accuracy(preds, y)
-        # attention: there must be a key of "loss" in the returned dict 
-        dic = {"loss":loss,"acc":acc} 
-        return dic
-    
-    #optimizer,and optional lr_scheduler
-    def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-2)
-        lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.0001)
-        return {"optimizer":optimizer,"lr_scheduler":lr_scheduler}
-    
-pl.seed_everything(1234)
+```
+
+```python
+import torchkeras 
+from torchkeras.metrics import Accuracy 
+
 net = Net()
-model = Model(net)
+loss_fn = nn.BCEWithLogitsLoss()
+metric_dict = {"acc":Accuracy()}
 
+optimizer = torch.optim.Adam(net.parameters(), lr=0.05)
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.0001)
 
-torchkeras.summary(model,input_shape =(2,))
+model = torchkeras.LightModel(net,
+                   loss_fn = loss_fn,
+                   metrics_dict= metric_dict,
+                   optimizer = optimizer,
+                   lr_scheduler = lr_scheduler,
+                  )       
 
+from torchkeras import summary
+summary(model,input_data=features);
 
 ```
 
-```
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-            Linear-1                    [-1, 4]              12
-            Linear-2                    [-1, 8]              40
-            Linear-3                    [-1, 1]               9
-================================================================
-Total params: 61
-Trainable params: 61
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.000008
-Forward/backward pass size (MB): 0.000099
-Params size (MB): 0.000233
-Estimated Total Size (MB): 0.000340
-----------------------------------------------------------------
-```
+```python
 
+```
 
 **3，训练模型**
 
 ```python
-ckpt_cb = pl.callbacks.ModelCheckpoint(monitor='val_loss')
+import pytorch_lightning as pl     
 
-# set gpus=0 will use cpu，
-# set gpus=1 will use 1 gpu
-# set gpus=2 will use 2gpus 
-# set gpus = -1 will use all gpus 
-# you can also set gpus = [0,1] to use the  given gpus
-# you can even set tpu_cores=2 to use two tpus 
+#1，设置回调函数
+model_ckpt = pl.callbacks.ModelCheckpoint(
+    monitor='val_acc',
+    save_top_k=1,
+    mode='max'
+)
 
-trainer = pl.Trainer(max_epochs=100,gpus = 0, callbacks=[ckpt_cb]) 
+early_stopping = pl.callbacks.EarlyStopping(monitor = 'val_acc',
+                           patience=3,
+                           mode = 'max'
+                          )
 
-trainer.fit(model,dl_train,dl_valid)
+#2，设置训练参数
+
+# gpus=0 则使用cpu训练，gpus=1则使用1个gpu训练，gpus=2则使用2个gpu训练，gpus=-1则使用所有gpu训练，
+# gpus=[0,1]则指定使用0号和1号gpu训练， gpus="0,1,2,3"则使用0,1,2,3号gpu训练
+# tpus=1 则使用1个tpu训练
+trainer = pl.Trainer(logger=True,
+                     min_epochs=3,max_epochs=20,
+                     gpus=0,
+                     callbacks = [model_ckpt,early_stopping],
+                     enable_progress_bar = True) 
+
+
+##4，启动训练循环
+trainer.fit(model,dl_train,dl_val)
+
 
 ```
 
 ```
-================================================================================2021-01-16 23:41:38
-epoch =  0
-{'val_loss': 0.6706896424293518, 'val_acc': 0.5558333396911621}
-{'acc': 0.5157142281532288, 'loss': 0.6820458769798279}
+================================================================================2022-07-16 20:25:49
+{'epoch': 0, 'val_loss': 0.3484574854373932, 'val_acc': 0.8766666650772095}
+{'epoch': 0, 'train_loss': 0.5639581680297852, 'train_acc': 0.708214282989502}
+<<<<<< reach best val_acc : 0.8766666650772095 >>>>>>
 
-================================================================================2021-01-16 23:41:39
-epoch =  1
-{'val_loss': 0.653035581111908, 'val_acc': 0.5708333849906921}
-{'acc': 0.5457143783569336, 'loss': 0.6677185297012329}
+================================================================================2022-07-16 20:25:54
+{'epoch': 1, 'val_loss': 0.18654096126556396, 'val_acc': 0.925000011920929}
+{'epoch': 1, 'train_loss': 0.2512527406215668, 'train_acc': 0.9117857217788696}
+<<<<<< reach best val_acc : 0.925000011920929 >>>>>>
 
-================================================================================2021-01-16 23:41:40
-epoch =  2
-{'val_loss': 0.6122683882713318, 'val_acc': 0.6533333659172058}
-{'acc': 0.6132143139839172, 'loss': 0.6375874876976013}
+================================================================================2022-07-16 20:25:59
+{'epoch': 2, 'val_loss': 0.19609291851520538, 'val_acc': 0.9191666841506958}
+{'epoch': 2, 'train_loss': 0.19115397334098816, 'train_acc': 0.9257143139839172}
 
-================================================================================2021-01-16 23:41:40
-epoch =  3
-{'val_loss': 0.5168119668960571, 'val_acc': 0.7708333134651184}
-{'acc': 0.6842857003211975, 'loss': 0.574131190776825}
+================================================================================2022-07-16 20:26:04
+{'epoch': 3, 'val_loss': 0.18749761581420898, 'val_acc': 0.925000011920929}
+{'epoch': 3, 'train_loss': 0.19545568525791168, 'train_acc': 0.9235714077949524}
 
-================================================================================2021-01-16 23:41:41
-epoch =  4
-{'val_loss': 0.3789764940738678, 'val_acc': 0.8766666054725647}
-{'acc': 0.7900000214576721, 'loss': 0.4608381390571594}
-
-================================================================================2021-01-16 23:41:41
-epoch =  5
-{'val_loss': 0.2496153712272644, 'val_acc': 0.9208332896232605}
-{'acc': 0.8982142806053162, 'loss': 0.3223666250705719}
-
-================================================================================2021-01-16 23:41:42
-epoch =  6
-{'val_loss': 0.21876734495162964, 'val_acc': 0.9124999642372131}
-{'acc': 0.908214271068573, 'loss': 0.24333418905735016}
-
-================================================================================2021-01-16 23:41:43
-epoch =  7
-{'val_loss': 0.19420616328716278, 'val_acc': 0.9266666769981384}
-{'acc': 0.9132143259048462, 'loss': 0.2207658737897873}
-
-================================================================================2021-01-16 23:41:44
-epoch =  8
-{'val_loss': 0.1835813671350479, 'val_acc': 0.9225000739097595}
-{'acc': 0.9185715317726135, 'loss': 0.20826208591461182}
-
-================================================================================2021-01-16 23:41:45
-epoch =  9
-{'val_loss': 0.17465434968471527, 'val_acc': 0.9300000071525574}
-{'acc': 0.9189285039901733, 'loss': 0.20436131954193115}
+================================================================================2022-07-16 20:26:09
+{'epoch': 4, 'val_loss': 0.21518440544605255, 'val_acc': 0.9083333611488342}
+{'epoch': 4, 'train_loss': 0.1998639553785324, 'train_acc': 0.9192857146263123}
 ```
 
 
@@ -542,8 +508,8 @@ ax1.scatter(Xn[:,0],Xn[:,1],c = "g")
 ax1.legend(["positive","negative"]);
 ax1.set_title("y_true");
 
-Xp_pred = X[torch.squeeze(model.forward(X)>=0.5)]
-Xn_pred = X[torch.squeeze(model.forward(X)<0.5)]
+Xp_pred = X[torch.squeeze(net.forward(X)>=0.5)]
+Xn_pred = X[torch.squeeze(net.forward(X)<0.5)]
 
 ax2.scatter(Xp_pred[:,0],Xp_pred[:,1],c = "r")
 ax2.scatter(Xn_pred[:,0],Xn_pred[:,1],c = "g")
@@ -558,21 +524,13 @@ ax2.set_title("y_pred");
 **4，评估模型**
 
 ```python
-import pandas as pd 
-
-history = model.history
-dfhistory = pd.DataFrame(history) 
-dfhistory 
-```
-
-```python
 %matplotlib inline
 %config InlineBackend.figure_format = 'svg'
 
 import matplotlib.pyplot as plt
 
 def plot_metric(dfhistory, metric):
-    train_metrics = dfhistory[metric]
+    train_metrics = dfhistory["train_"+metric]
     val_metrics = dfhistory['val_'+metric]
     epochs = range(1, len(train_metrics) + 1)
     plt.plot(epochs, train_metrics, 'bo--')
@@ -585,24 +543,30 @@ def plot_metric(dfhistory, metric):
 ```
 
 ```python
+dfhistory  = model.get_history() 
 plot_metric(dfhistory,"loss")
+
 ```
 
-![](./data/3-3-分类loss曲线.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h491k7wtl0j20f70a6wes.jpg)
+
+```python
+
+```
 
 ```python
 plot_metric(dfhistory,"acc")
 ```
 
-![](./data/3-3-分类acc曲线.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h491k8if3hj20ev0aaglw.jpg)
 
 ```python
-results = trainer.test(model, test_dataloaders=dl_valid, verbose = False)
-print(results[0])
+#使用最佳保存点进行评估
+trainer.test(ckpt_path='best', dataloaders=dl_val,verbose = False)
 ```
 
 ```
-{'test_loss': 0.18403057754039764, 'test_acc': 0.949999988079071}
+{'test_loss': 0.18654096126556396, 'test_acc': 0.925000011920929}
 ```
 
 ```python
@@ -612,25 +576,46 @@ print(results[0])
 **5，使用模型**
 
 ```python
+predictions = F.sigmoid(torch.cat(trainer.predict(model, dl_val, ckpt_path='best'))) 
+predictions 
+```
+
+```
+tensor([[0.3873],
+        [0.0028],
+        [0.8772],
+        ...,
+        [0.9886],
+        [0.4970],
+        [0.8094]])
+```
+
+```python
 def predict(model,dl):
     model.eval()
-    prediction = torch.cat([model.forward(t[0].to(model.device)) for t in dl])
-    result = torch.where(prediction>0.5,torch.ones_like(prediction),torch.zeros_like(prediction))
+    result = torch.cat([model.forward(t[0]) for t in dl])
     return(result.data)
 
-result = predict(model,dl_valid)
-
-result 
+print(model.device)
+predictions = F.sigmoid(predict(model,dl_val)[:10]) 
 ```
 
+```python
+
 ```
-tensor([[0.],
-        [0.],
-        [0.],
-        ...,
-        [1.],
-        [1.],
-        [1.]])
+
+**6，保存模型**
+
+```python
+print(trainer.checkpoint_callback.best_model_path)
+print(trainer.checkpoint_callback.best_model_score)
+```
+
+```python
+model_loaded = torchkeras.LightModel.load_from_checkpoint(trainer.checkpoint_callback.best_model_path)
+```
+
+```python
 
 ```
 
@@ -644,4 +629,4 @@ tensor([[0.],
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![算法美食屋logo.png](./data/算法美食屋二维码.jpg)
+![算法美食屋logo.png](https://tva1.sinaimg.cn/large/e6c9d24egy1h41m2zugguj20k00b9q46.jpg)
