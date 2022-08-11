@@ -64,7 +64,7 @@
 
 **点击学习内容蓝色标题即可进入该章节。**
 
-<!-- #region -->
+
 |日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
 |----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
 |&nbsp;|[**一、Pytorch的建模流程**](./一、Pytorch的建模流程.md)    |⭐️   |   0hour   |✅    |
@@ -95,35 +95,6 @@
 |day20|  [6-3,使用GPU训练模型](./6-3,使用GPU训练模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
 | * |  [后记：我的产品观](https://mp.weixin.qq.com/s/WXUJ0D2iAIWASlkpv60FLA)    | ⭐️   |   0hour    | ✅  |
 
-
-
-
-
-
-![](https://tva1.sinaimg.cn/large/e6c9d24egy1h4gzw2yn6fj20jk0fzwgu.jpg)
-
- 
-🎈🎈2022年08月更新 **pytorch与广告推荐**章节，适合需要进阶的同学😋😋
-
-
-
-|日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
-|----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
-|&nbsp; |[**七、Pytorch与广告推荐**](./七、Pytorch与广告推荐.md)|    ⭐️ | 0hour|✅  |
-|day21|  [7-1,推荐算法业务](./7-1,推荐算法业务.md)   | ⭐️⭐️⭐️⭐️    |   0.5hour    |✅   |
-|day22|  [7-2,广告算法业务](./7-2,广告算法业务.md)  | ⭐️⭐️⭐️⭐️   |   0.5hour    | ✅  |
-|day23|  [7-3,FM模型](./7-3,FM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
-|day24|  [7-4,DeepFM模型](./7-4,DeepFM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
-|day25|  [7-5,FiBiNET模型](./7-5,FiBiNET模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day26|  [7-6,DeepCross模型](./7-6,DeepCross模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day27|  [7-7,DIN网络](./7-7,DIN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day28|  [7-8,DIEN网络](./7-8,DIEN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-
-
-
-
-<!-- #endregion -->
-
 ```python
 
 ```
@@ -148,7 +119,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
 
 
  
-step3: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接下，载解压并移动到eat_pytorch_in_20_days路径下。
+step3: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接，下载解压并移动到eat_pytorch_in_20_days路径下，约160M。
     
 
 <!-- #endregion -->
@@ -169,7 +140,7 @@ print("[[2,1]]@[[-1],[2]] =", c.item())
 ```
 
 ```
-torch version: 1.5.0
+torch version: 1.10.0
 [[2,1]]@[[-1],[2]] = 0
 ```
 
@@ -177,7 +148,58 @@ torch version: 1.5.0
 
 ```
 
-### 四，鼓励和联系作者 🎈🎈
+
+### 四，项目更新记录
+
+<!-- #region -->
+#### 1， 2022-06🎈🎈更新pytorch模型训练工具库torchkeras
+
+相关章节代码进行了对应优化调整。
+
+|features| torchkeras.KerasModel     |  torchkeras.LightModel   | 
+|----:|:-------------------------:|:-----------:|
+|progress bar | ✅    |✅    |
+|early stopping | ✅    |✅    |
+|metrics from torchmetrics | ✅    |✅    |
+|gpu training | ✅    |✅    |
+|multi-gpus training |   ❌  |✅    |
+|tensorboard callback |   ❌  |✅    |
+|simple source code|   ✅   |❌  |
+
+详情参考项目链接：：https://github.com/lyhue1991/torchkeras 
+
+
+
+
+
+ 
+#### 2，2022-08🎈🎈更新 **pytorch与广告推荐**章节
+
+适合需要进阶的同学😋😋
+
+
+|日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
+|----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
+|&nbsp; |[**七、Pytorch与广告推荐**](./七、Pytorch与广告推荐.md)|    ⭐️ | 0hour|✅  |
+|day1|  [7-1,推荐算法业务](./7-1,推荐算法业务.md)   | ⭐️⭐️⭐️⭐️    |   0.5hour    |✅   |
+|day2|  [7-2,广告算法业务](./7-2,广告算法业务.md)  | ⭐️⭐️⭐️⭐️   |   0.5hour    | ✅  |
+|day3|  [7-3,FM模型](./7-3,FM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day4|  [7-4,DeepFM模型](./7-4,DeepFM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day5|  [7-5,FiBiNET模型](./7-5,FiBiNET模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day6|  [7-6,DeepCross模型](./7-6,DeepCross模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day7|  [7-7,DIN网络](./7-7,DIN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day8|  [7-8,DIEN网络](./7-8,DIEN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h4gzw2yn6fj20jk0fzwgu.jpg)
+
+
+<!-- #endregion -->
+
+```python
+
+```
+
+### 五，鼓励和联系作者 🎈🎈
 
 
 **如果本书对你有所帮助，想鼓励一下作者，记得给本项目加一颗星星star⭐️，并分享给你的朋友们喔😊!** 
