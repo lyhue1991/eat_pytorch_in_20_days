@@ -46,7 +46,7 @@
 
 
 
-![](./data/Pytorch官方vs吃掉Pytorch.png)
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h536b2yro2j20k00b9myd.jpg)
 
 ```python
 
@@ -118,7 +118,6 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
 ``` 
 
 
- 
 step3: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接，下载解压并移动到eat_pytorch_in_20_days路径下，约160M。
     
 
@@ -170,12 +169,9 @@ torch version: 1.10.0
 
 
 
-
-
- 
 #### 2，2022-08🎈🎈更新 **pytorch与广告推荐**章节
 
-适合需要进阶的同学😋😋
+适合对广告推荐领域感兴趣，且需要进阶的同学😋😋
 
 
 |日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
