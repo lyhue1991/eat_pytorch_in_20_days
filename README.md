@@ -1,58 +1,7 @@
 # How to eat Pytorch in 20 days ?🔥🔥
 
-<!-- #region -->
-**《10天吃掉那只pyspark》**
-* 🚀 github项目地址: https://github.com/lyhue1991/eat_pyspark_in_10_days
-* 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5fe6aa955e24ed00302304e0 【代码可直接fork后云端运行，无需配置环境】
 
-
-**《20天吃掉那只Pytorch》**
-* 🚀 github项目地址: https://github.com/lyhue1991/eat_pytorch_in_20_days
-* 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5f2ac5d8af3980002cb1bc08 【代码可直接fork后云端运行，无需配置环境】
-
-
-**《30天吃掉那只TensorFlow2》**
-* 🚀 github项目地址: https://github.com/lyhue1991/eat_tensorflow2_in_30_days
-* 🐳 和鲸专栏地址: https://www.kesci.com/home/column/5d8ef3c3037db3002d3aa3a0 【代码可直接fork后云端运行，无需配置环境】
-
-**极速通道** 
-*  🚀 公众号 “**算法美食屋**” 后台回复暗号："**吃货来了**"
-*  😋 获取以上3套教程的jupyter notebook 源码文件以及全部数据集的百度云盘下载链接。
-*  https://mp.weixin.qq.com/s/ymLtH5BqlWAkpOmCLQOYxw
-
-![image.png](./data/算法美食屋二维码.jpg)
-
-### 一， Pytorch🔥  or TensorFlow2 🍎 
-
-先说结论:
-
-**如果是工程师，应该优先选TensorFlow2.**
-
-**如果是学生或者研究人员，应该优先选择Pytorch.**
-
-**如果时间足够，最好TensorFlow2和Pytorch都要学习掌握。**
-<!-- #endregion -->
-
-理由如下：
-
-* 1，**在工业界最重要的是模型落地，目前国内的大部分互联网企业只支持TensorFlow模型的在线部署，不支持Pytorch。** 并且工业界更加注重的是模型的高可用性，许多时候使用的都是成熟的模型架构，调试需求并不大。
-
-
-* 2，**研究人员最重要的是快速迭代发表文章，需要尝试一些较新的模型架构。而Pytorch在易用性上相比TensorFlow2有一些优势，更加方便调试。** 并且在2019年以来在学术界占领了大半壁江山，能够找到的相应最新研究成果更多。
-
-
-* 3，TensorFlow2和Pytorch实际上整体风格已经非常相似了，学会了其中一个，学习另外一个将比较容易。两种框架都掌握的话，能够参考的开源模型案例更多，并且可以方便地在两种框架之间切换。
-
-
-本书的TensorFlow镜像教程：
-
-#### 🍊《30天吃掉那只TensorFlow2》：https://github.com/lyhue1991/eat_tensorflow2_in_30_days 
-
-```python
-
-```
-
-### 二，本书📖面向读者 👼
+### 一，本书📖面向读者 👼
 
 
 **本书假定读者有一定的机器学习和深度学习基础，使用过Keras或TensorFlow或Pytorch搭建训练过简单的模型。**
@@ -78,7 +27,7 @@
 
 ```
 
-### 三，本书写作风格 🍉
+### 二，本书写作风格 🍉
 
 
 **本书是一本对人类用户极其友善的Pytorch入门工具书，Don't let me think是本书的最高追求。**
@@ -103,7 +52,7 @@
 
 ```
 
-### 四，本书学习方案 ⏰
+### 三，本书学习方案 ⏰
 
 **1，学习计划**
 
@@ -115,7 +64,7 @@
 
 **点击学习内容蓝色标题即可进入该章节。**
 
-
+<!-- #region -->
 |日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
 |----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
 |&nbsp;|[**一、Pytorch的建模流程**](./一、Pytorch的建模流程.md)    |⭐️   |   0hour   |✅    |
@@ -144,8 +93,36 @@
 |day18|  [6-1,构建模型的3种方法](./6-1,构建模型的3种方法.md)   | ⭐️⭐️⭐️⭐️    |   1hour    |✅   |
 |day19|  [6-2,训练模型的3种方法](./6-2,训练模型的3种方法.md)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
 |day20|  [6-3,使用GPU训练模型](./6-3,使用GPU训练模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
-| |  [后记：我的产品观](https://mp.weixin.qq.com/s/WXUJ0D2iAIWASlkpv60FLA)    | ⭐️   |   0hour    | ✅  |
+| * |  [后记：我的产品观](https://mp.weixin.qq.com/s/WXUJ0D2iAIWASlkpv60FLA)    | ⭐️   |   0hour    | ✅  |
 
+
+
+
+
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h4gzw2yn6fj20jk0fzwgu.jpg)
+
+ 
+🎈🎈2022年08月更新 **pytorch与广告推荐**章节，适合需要进阶的同学😋😋
+
+
+
+|日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
+|----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
+|&nbsp; |[**七、Pytorch与广告推荐**](./七、Pytorch与广告推荐.md)|    ⭐️ | 0hour|✅  |
+|day21|  [7-1,推荐算法业务](./7-1,推荐算法业务.md)   | ⭐️⭐️⭐️⭐️    |   0.5hour    |✅   |
+|day22|  [7-2,广告算法业务](./7-2,广告算法业务.md)  | ⭐️⭐️⭐️⭐️   |   0.5hour    | ✅  |
+|day23|  [7-3,FM模型](./7-3,FM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day24|  [7-4,DeepFM模型](./7-4,DeepFM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day25|  [7-5,FiBiNET模型](./7-5,FiBiNET模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day26|  [7-6,DeepCross模型](./7-6,DeepCross模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day27|  [7-7,DIN网络](./7-7,DIN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day28|  [7-8,DIEN网络](./7-8,DIEN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+
+
+
+
+<!-- #endregion -->
 
 ```python
 
@@ -157,16 +134,26 @@
 
 为了直接能够在jupyter中打开markdown文件，建议安装jupytext，将markdown转换成ipynb文件。
 
-```python
-#克隆本书源码到本地,使用码云镜像仓库国内下载速度更快
-#!git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
-
-#建议在jupyter notebook 上安装jupytext，以便能够将本书各章节markdown文件视作ipynb文件运行
-#!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
-    
-#建议在jupyter notebook 上安装最新版本pytorch 测试本书中的代码
-#!pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  -U torch torchvision torchtext torchkeras 
+<!-- #region -->
+step1: 克隆本书源码到本地,使用码云镜像仓库国内下载速度更快
 ```
+git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
+```
+
+step2: 在jupyter notebook 上安装jupytext，以便能够将本书各章节markdown文件视作ipynb文件运行
+
+```
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
+``` 
+
+
+ 
+step3: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接下，载解压并移动到eat_pytorch_in_20_days路径下。
+    
+
+<!-- #endregion -->
+
+
 
 ```python
 import torch 
@@ -190,7 +177,7 @@ torch version: 1.5.0
 
 ```
 
-### 五，鼓励和联系作者 🎈🎈
+### 四，鼓励和联系作者 🎈🎈
 
 
 **如果本书对你有所帮助，想鼓励一下作者，记得给本项目加一颗星星star⭐️，并分享给你的朋友们喔😊!** 
@@ -199,7 +186,7 @@ torch version: 1.5.0
 
 也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
-![算法美食屋logo.png](./data/算法美食屋二维码.jpg)
+![算法美食屋logo.png](https://tva1.sinaimg.cn/large/e6c9d24egy1h41m2zugguj20k00b9q46.jpg)
 
 ```python
 

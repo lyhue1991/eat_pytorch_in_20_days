@@ -21,7 +21,7 @@
 
 # !git remote remove origin 
 
-# !git push -f origin master 
+# !git push origin master 
 
 # !ssh -T git@github.com:lyhue1991/eat_pytorch_in_20_days.git
 
@@ -29,7 +29,7 @@
 
 # !git remote add gitee https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
 
-# !git push -f gitee master 
+# !git push  gitee master 
 
 # ## 创建pages分支
 
