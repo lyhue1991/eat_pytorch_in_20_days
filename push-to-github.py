@@ -15,13 +15,13 @@
 # #!rm -rf *.html
 # -
 
-# !git commit -m "update chapter-7" 
+# !git commit -m "add chapter-7" 
 
 # !git remote add origin git@github.com:lyhue1991/eat_pytorch_in_20_days.git
 
 # !git remote remove origin 
 
-# !git push origin master 
+# !git push -f origin master 
 
 # !ssh -T git@github.com:lyhue1991/eat_pytorch_in_20_days.git
 
