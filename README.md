@@ -67,32 +67,32 @@
 
 |日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
 |----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
-|&nbsp;|[**一、Pytorch的建模流程**](./一、Pytorch的建模流程.md)    |⭐️   |   0hour   |✅    |
-|day1 | [1-1,结构化数据建模流程范例](./1-1,结构化数据建模流程范例.md)    | ⭐️⭐️⭐️ |   1hour    |✅    |
-|day2 | [1-2,图片数据建模流程范例](./1-2,图片数据建模流程范例.md)    | ⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
-|day3 | [1-3,文本数据建模流程范例](./1-3,文本数据建模流程范例.md)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅  |
-|day4 | [1-4,时间序列数据建模流程范例](./1-4,时间序列数据建模流程范例.md)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
-|&nbsp; |[**二、Pytorch的核心概念**](./二、Pytorch的核心概念.md)  | ⭐️  |  0hour |✅  |
-|day5 |  [2-1,张量数据结构](./2-1,张量数据结构.md)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅   |
-|day6 |  [2-2,自动微分机制](./2-2,自动微分机制.md)  | ⭐️⭐️⭐️   |   1hour    | ✅  |
-|day7 |  [2-3,动态计算图](./2-3,动态计算图.md)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅   |
-|&nbsp; |[**三、Pytorch的层次结构**](./三、Pytorch的层次结构.md) |   ⭐️  |  0hour   | ✅  |
-|day8 |  [3-1,低阶API示范](./3-1,低阶API示范.md)   | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
-|day9 |  [3-2,中阶API示范](./3-2,中阶API示范.md)   | ⭐️⭐️⭐️   |  1hour    |✅  |
-|day10 | [3-3,高阶API示范](./3-3,高阶API示范.md)  | ⭐️⭐️⭐️  |   1hour    |✅ |
-|&nbsp; |[**四、Pytorch的低阶API**](./四、Pytorch的低阶API.md) |⭐️    | 0hour| ✅ |
-|day11|  [4-1,张量的结构操作](./4-1,张量的结构操作.md)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅ |
-|day12|  [4-2,张量的数学运算](./4-2,张量的数学运算.md)   | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
-|day13|  [4-3,nn.functional和nn.Module](./4-3,nn.functional和nn.Module.md)  | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
-|&nbsp; |[**五、Pytorch的中阶API**](./五、Pytorch的中阶API.md) |  ⭐️  | 0hour|✅ |
-|day14|  [5-1,Dataset和DataLoader](./5-1,Dataset和DataLoader.md)   | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅   |
-|day15|  [5-2,模型层](./5-3,模型层.md)  | ⭐️⭐️⭐️   |   1hour    |✅  |
-|day16|  [5-3,损失函数](./5-4,损失函数.md)    | ⭐️⭐️⭐️   |   1hour    |✅   |
-|day17|  [5-4,TensorBoard可视化](./5-4,TensorBoard可视化.md)    | ⭐️⭐️⭐️   |   1hour    | ✅   |
-|&nbsp; |[**六、Pytorch的高阶API**](./六、Pytorch的高阶API.md)|    ⭐️ | 0hour|✅  |
-|day18|  [6-1,构建模型的3种方法](./6-1,构建模型的3种方法.md)   | ⭐️⭐️⭐️⭐️    |   1hour    |✅   |
-|day19|  [6-2,训练模型的3种方法](./6-2,训练模型的3种方法.md)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
-|day20|  [6-3,使用GPU训练模型](./6-3,使用GPU训练模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|&nbsp;|[**一、Pytorch的建模流程**](./一、Pytorch的建模流程.ipynb)    |⭐️   |   0hour   |✅    |
+|day1 | [1-1,结构化数据建模流程范例](./1-1,结构化数据建模流程范例.ipynb)    | ⭐️⭐️⭐️ |   1hour    |✅    |
+|day2 | [1-2,图片数据建模流程范例](./1-2,图片数据建模流程范例.ipynb)    | ⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
+|day3 | [1-3,文本数据建模流程范例](./1-3,文本数据建模流程范例.ipynb)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅  |
+|day4 | [1-4,时间序列数据建模流程范例](./1-4,时间序列数据建模流程范例.ipynb)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
+|&nbsp; |[**二、Pytorch的核心概念**](./二、Pytorch的核心概念.ipynb)  | ⭐️  |  0hour |✅  |
+|day5 |  [2-1,张量数据结构](./2-1,张量数据结构.ipynb)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅   |
+|day6 |  [2-2,自动微分机制](./2-2,自动微分机制.ipynb)  | ⭐️⭐️⭐️   |   1hour    | ✅  |
+|day7 |  [2-3,动态计算图](./2-3,动态计算图.ipynb)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅   |
+|&nbsp; |[**三、Pytorch的层次结构**](./三、Pytorch的层次结构.ipynb) |   ⭐️  |  0hour   | ✅  |
+|day8 |  [3-1,低阶API示范](./3-1,低阶API示范.ipynb)   | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
+|day9 |  [3-2,中阶API示范](./3-2,中阶API示范.ipynb)   | ⭐️⭐️⭐️   |  1hour    |✅  |
+|day10 | [3-3,高阶API示范](./3-3,高阶API示范.ipynb)  | ⭐️⭐️⭐️  |   1hour    |✅ |
+|&nbsp; |[**四、Pytorch的低阶API**](./四、Pytorch的低阶API.ipynb) |⭐️    | 0hour| ✅ |
+|day11|  [4-1,张量的结构操作](./4-1,张量的结构操作.ipynb)  | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅ |
+|day12|  [4-2,张量的数学运算](./4-2,张量的数学运算.ipynb)   | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
+|day13|  [4-3,nn.functional和nn.Module](./4-3,nn.functional和nn.Module.ipynb)  | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
+|&nbsp; |[**五、Pytorch的中阶API**](./五、Pytorch的中阶API.ipynb) |  ⭐️  | 0hour|✅ |
+|day14|  [5-1,Dataset和DataLoader](./5-1,Dataset和DataLoader.ipynb)   | ⭐️⭐️⭐️⭐️⭐️   |   2hour    | ✅   |
+|day15|  [5-2,模型层](./5-3,模型层.ipynb)  | ⭐️⭐️⭐️   |   1hour    |✅  |
+|day16|  [5-3,损失函数](./5-4,损失函数.ipynb)    | ⭐️⭐️⭐️   |   1hour    |✅   |
+|day17|  [5-4,TensorBoard可视化](./5-4,TensorBoard可视化.ipynb)    | ⭐️⭐️⭐️   |   1hour    | ✅   |
+|&nbsp; |[**六、Pytorch的高阶API**](./六、Pytorch的高阶API.ipynb)|    ⭐️ | 0hour|✅  |
+|day18|  [6-1,构建模型的3种方法](./6-1,构建模型的3种方法.ipynb)   | ⭐️⭐️⭐️⭐️    |   1hour    |✅   |
+|day19|  [6-2,训练模型的3种方法](./6-2,训练模型的3种方法.ipynb)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
+|day20|  [6-3,使用GPU训练模型](./6-3,使用GPU训练模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
 | * |  [后记：我的产品观](https://mp.weixin.qq.com/s/WXUJ0D2iAIWASlkpv60FLA)    | ⭐️   |   0hour    | ✅  |
 
 ```python
@@ -105,23 +105,15 @@
 
 为了直接能够在jupyter中打开markdown文件，建议安装jupytext，将markdown转换成ipynb文件。
 
-<!-- #region -->
+
 step1: 克隆本书源码到本地,使用码云镜像仓库国内下载速度更快
 ```
 git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
 ```
 
-step2: 在jupyter notebook 上安装jupytext，以便能够将本书各章节markdown文件视作ipynb文件运行
-
-```
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U jupytext
-``` 
+step2: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接，下载解压并移动到eat_pytorch_in_20_days路径下，约160M。
 
 
-step3: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接，下载解压并移动到eat_pytorch_in_20_days路径下，约160M。
-    
-
-<!-- #endregion -->
 
 
 
@@ -176,15 +168,15 @@ torch version: 1.10.0
 
 |日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
 |----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
-|&nbsp; |[**七、Pytorch与广告推荐**](./七、Pytorch与广告推荐.md)|    ⭐️ | 0hour|✅  |
-|day1|  [7-1,推荐算法业务](./7-1,推荐算法业务.md)   | ⭐️⭐️⭐️⭐️    |   0.5hour    |✅   |
-|day2|  [7-2,广告算法业务](./7-2,广告算法业务.md)  | ⭐️⭐️⭐️⭐️   |   0.5hour    | ✅  |
-|day3|  [7-3,FM模型](./7-3,FM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
-|day4|  [7-4,DeepFM模型](./7-4,DeepFM模型.md)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
-|day5|  [7-5,FiBiNET模型](./7-5,FiBiNET模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day6|  [7-6,DeepCross模型](./7-6,DeepCross模型.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day7|  [7-7,DIN网络](./7-7,DIN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day8|  [7-8,DIEN网络](./7-8,DIEN网络.md)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|&nbsp; |[**七、Pytorch与广告推荐**](./七、Pytorch与广告推荐.ipynb)|    ⭐️ | 0hour|✅  |
+|day1|  [7-1,推荐算法业务](./7-1,推荐算法业务.ipynb)   | ⭐️⭐️⭐️⭐️    |   0.5hour    |✅   |
+|day2|  [7-2,广告算法业务](./7-2,广告算法业务.ipynb)  | ⭐️⭐️⭐️⭐️   |   0.5hour    | ✅  |
+|day3|  [7-3,FM模型](./7-3,FM模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day4|  [7-4,DeepFM模型](./7-4,DeepFM模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day5|  [7-5,FiBiNET模型](./7-5,FiBiNET模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day6|  [7-6,DeepCross模型](./7-6,DeepCross模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day7|  [7-7,DIN网络](./7-7,DIN网络.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day8|  [7-8,DIEN网络](./7-8,DIEN网络.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1h4gzw2yn6fj20jk0fzwgu.jpg)
 
