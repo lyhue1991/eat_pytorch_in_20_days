@@ -23,9 +23,12 @@
 * 4，机器学习基础
 
 
-```python
 
-```
+本书B站介绍视频《eat_pytorch_in_20_days食用指南》：
+
+https://www.bilibili.com/video/BV1Ua411P7oe?pop_share=1&vd_source=84fbc24503315ce45fd511cbfa593fec
+
+
 
 ### 二，本书写作风格 🍉
 
