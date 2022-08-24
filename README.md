@@ -23,12 +23,23 @@
 * 4，机器学习基础
 
 
-
-本书B站介绍视频《eat_pytorch_in_20_days食用指南》：
-
-https://www.bilibili.com/video/BV1Ua411P7oe?pop_share=1&vd_source=84fbc24503315ce45fd511cbfa593fec
+<!-- #region -->
 
 
+
+<br>
+
+<font color="red">
+    
+🔥🔥号外号外，《20天吃掉那只Pytorch》视频版本登录BiliBili啦，吃货本货倾情掌勺，只为最纯正的乡土味道，欢迎新老朋友前来品尝 🍉🍉！
+
+https://www.bilibili.com/video/BV1Ua411P7oe
+    
+</font> 
+
+
+
+<!-- #endregion -->
 
 ### 二，本书写作风格 🍉
 
@@ -172,14 +183,14 @@ torch version: 1.10.0
 |日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
 |----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
 |&nbsp; |[**七、Pytorch与广告推荐**](./七、Pytorch与广告推荐.ipynb)|    ⭐️ | 0hour|✅  |
-|day1|  [7-1,推荐算法业务](./7-1,推荐算法业务.ipynb)   | ⭐️⭐️⭐️⭐️    |   0.5hour    |✅   |
-|day2|  [7-2,广告算法业务](./7-2,广告算法业务.ipynb)  | ⭐️⭐️⭐️⭐️   |   0.5hour    | ✅  |
-|day3|  [7-3,FM模型](./7-3,FM模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day1|  [7-1,推荐算法业务](./7-1,推荐算法业务.ipynb)   | ⭐️⭐️⭐️    |   0.5hour    |✅   |
+|day2|  [7-2,广告算法业务](./7-2,广告算法业务.ipynb)  | ⭐️⭐️⭐️   |   0.5hour    | ✅  |
+|day3|  [7-3,FM模型](./7-3,FM模型.ipynb)    | ⭐️⭐️⭐️   |   1hour    | ✅  |
 |day4|  [7-4,DeepFM模型](./7-4,DeepFM模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
 |day5|  [7-5,FiBiNET模型](./7-5,FiBiNET模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day6|  [7-6,DeepCross模型](./7-6,DeepCross模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day7|  [7-7,DIN网络](./7-7,DIN网络.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
-|day8|  [7-8,DIEN网络](./7-8,DIEN网络.ipynb)    | ⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day6|  [7-6,DeepCross模型](./7-6,DeepCross模型.ipynb)    | ⭐️⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day7|  [7-7,DIN网络](./7-7,DIN网络.ipynb)    | ⭐️⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
+|day8|  [7-8,DIEN网络](./7-8,DIEN网络.ipynb)    | ⭐️⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1h4gzw2yn6fj20jk0fzwgu.jpg)
 
