@@ -104,9 +104,9 @@ https://www.bilibili.com/video/BV1Ua411P7oe
 |day16|  [5-3,损失函数](./5-4,损失函数.ipynb)    | ⭐️⭐️⭐️⭐️   |   1hour    |✅   |
 |day17|  [5-4,TensorBoard可视化](./5-4,TensorBoard可视化.ipynb)    | ⭐️⭐️⭐️   |   1hour    | ✅   |
 |&nbsp; |[**六、Pytorch的高阶API**](./六、Pytorch的高阶API.ipynb)|    ⭐️ | 0hour|✅  |
-|day18|  [6-1,构建模型的3种方法](./6-1,构建模型的3种方法.ipynb)   | ⭐️⭐️⭐️⭐️    |   1hour    |✅   |
-|day19|  [6-2,训练模型的3种方法](./6-2,训练模型的3种方法.ipynb)  | ⭐️⭐️⭐️⭐️   |   1hour    | ✅  |
-|day20|  [6-3,使用GPU训练模型](./6-3,使用GPU训练模型.ipynb)    | ⭐️⭐️⭐️⭐️    |   1hour    | ✅  |
+|day18|  [6-1,构建模型的3种方法](./6-1,构建模型的3种方法.ipynb)   | ⭐️⭐️    |   0.5hour    |✅   |
+|day19|  [6-2,训练模型的3种方法](./6-2,训练模型的3种方法.ipynb)  | ⭐️⭐️⭐️   |   1hour    | ✅  |
+|day20|  [6-3,使用GPU训练模型](./6-3,使用GPU训练模型.ipynb)    | ⭐️⭐️⭐️⭐️ |   1hour    | ✅  |
 | * |  [后记：我的产品观](https://mp.weixin.qq.com/s/WXUJ0D2iAIWASlkpv60FLA)    | ⭐️   |   0hour    | ✅  |
 
 ```python
