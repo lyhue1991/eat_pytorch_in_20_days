@@ -192,7 +192,20 @@ torch version: 1.10.0
 |day7|  [7-7,DIN网络](./7-7,DIN网络.ipynb)    | ⭐️⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
 |day8|  [7-8,DIEN网络](./7-8,DIEN网络.ipynb)    | ⭐️⭐️⭐️⭐️⭐️    |   2hour    | ✅  |
 
-![](https://tva1.sinaimg.cn/large/e6c9d24egy1h4gzw2yn6fj20jk0fzwgu.jpg)
+
+
+#### 3，2022-09🎈🎈更新 彩蛋章节
+
+介绍一些与pytorch相关的周边工具
+
+
+|日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
+|----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
+|&nbsp; |[**彩蛋：Pytorch周边工具**](./彩蛋：Pytorch周边工具.ipynb)|    ⭐️ | 0hour|✅  |
+|day1|  [A-1, Kaggle免费GPU使用攻略](./A-1,Kaggle免费GPU使用攻略.ipynb)   | ⭐️⭐️⭐️    |   1hour    |✅   |
+|day2|  [A-2, Streamlit构建机器学习应用](./A-2,Streamlit构建机器学习应用.ipynb)  | ⭐️⭐️⭐️   |  1hour    | ✅  |
+
+
 
 
 <!-- #endregion -->
