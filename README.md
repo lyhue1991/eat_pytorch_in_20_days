@@ -1,6 +1,13 @@
 # How to eat Pytorch in 20 days ?🔥🔥
 
 
+🔥🔥 B站讲解：https://www.bilibili.com/video/BV1Ua411P7oe
+
+🐳🐳 和鲸专栏：https://www.heywhale.com/home/column/5f2ac5d8af3980002cb1bc08
+
+🌺🌺 公众号：https://mp.weixin.qq.com/s/0YdveETOZkq2SFtDkIANEg 
+
+
 ### 一，本书📖面向读者 👼
 
 
@@ -27,15 +34,12 @@
 
 
 
-<br>
 
-<font color="red">
-    
-🔥🔥号外号外，《20天吃掉那只Pytorch》视频版本登录BiliBili啦，吃货本货倾情掌勺，只为最纯正的乡土味道，欢迎新老朋友前来品尝 🍉🍉！
+🔥🔥**号外号外，《20天吃掉那只Pytorch》视频版本登录BiliBili啦，吃货本货倾情掌勺，只为最纯正的乡土味道，欢迎新老朋友前来品尝** 🍉🍉！
 
 https://www.bilibili.com/video/BV1Ua411P7oe
     
-</font> 
+
 
 
 
@@ -117,9 +121,7 @@ https://www.bilibili.com/video/BV1Ua411P7oe
 
 本书全部源码在jupyter中编写测试通过，建议通过git克隆到本地，并在jupyter中交互式运行学习。
 
-为了直接能够在jupyter中打开markdown文件，建议安装jupytext，将markdown转换成ipynb文件。
-
-
+<!-- #region -->
 step1: 克隆本书源码到本地,使用码云镜像仓库国内下载速度更快
 ```
 git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
@@ -128,8 +130,13 @@ git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
 step2: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接，下载解压并移动到eat_pytorch_in_20_days路径下，约160M。
 
 
+救命方案：如果环境配置遇到了困难，也可以在和鲸社区fork项目后直接运行。
+
+和鲸《20天吃掉pytorch》专栏地址：https://www.heywhale.com/home/column/5f2ac5d8af3980002cb1bc08
 
 
+
+<!-- #endregion -->
 
 ```python
 import torch 

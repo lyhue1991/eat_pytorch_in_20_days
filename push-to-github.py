@@ -17,7 +17,7 @@
 # #!rm -rf *.html
 # -
 
-# !git commit -m "add appendix" 
+# !git commit -m "revise readme" 
 
 # !git remote add origin git@github.com:lyhue1991/eat_pytorch_in_20_days.git
 
