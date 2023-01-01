@@ -212,7 +212,7 @@ torch version: 1.10.0
 |day1|  [A-1, Kaggle免费GPU使用攻略](./A-1,Kaggle免费GPU使用攻略.ipynb)   | ⭐️⭐️⭐️    |   1hour    |✅   |
 |day2|  [A-2, Streamlit构建机器学习应用](./A-2,Streamlit构建机器学习应用.ipynb)  | ⭐️⭐️⭐️   |  1hour    | ✅  |
 |day3| [A-3, 使用Mac M1芯片加速pytorch](./A-3,使用MacM1芯片加速pytorch.ipynb) | ⭐️⭐️⭐️   |  1hour    | ✅  |
-|day4| [A-4, optuna可视化调参](./A-3,使用MacM1芯片加速pytorch.ipynb) | ⭐️⭐️⭐️   |  1hour    | ✅  |
+|day4| [A-4, optuna可视化调参魔法指南](./A-4,optuna可视化调参魔法指南.ipynb) | ⭐️⭐️⭐️⭐️   |  1hour    | ✅  |
 
 
 
