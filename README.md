@@ -104,8 +104,8 @@ https://www.bilibili.com/video/BV1Ua411P7oe
 |day13|  [4-3,nn.functional和nn.Module](./4-3,nn.functional和nn.Module.ipynb)  | ⭐️⭐️⭐️⭐️   |   1hour    |✅ |
 |&nbsp; |[**五、Pytorch的中阶API**](./五、Pytorch的中阶API.ipynb) |  ⭐️  | 0hour|✅ |
 |day14|  [5-1,Dataset和DataLoader](./5-1,Dataset和DataLoader.ipynb)   | ⭐️⭐️⭐️⭐️   |   1hour    | ✅   |
-|day15|  [5-2,模型层](./5-3,模型层.ipynb)  | ⭐️⭐️⭐️⭐️⭐️ |   2hour    |✅  |
-|day16|  [5-3,损失函数](./5-4,损失函数.ipynb)    | ⭐️⭐️⭐️⭐️   |   1hour    |✅   |
+|day15|  [5-2,模型层](./5-2,模型层.ipynb)  | ⭐️⭐️⭐️⭐️⭐️ |   2hour    |✅  |
+|day16|  [5-3,损失函数](./5-3,损失函数.ipynb)    | ⭐️⭐️⭐️⭐️   |   1hour    |✅   |
 |day17|  [5-4,TensorBoard可视化](./5-4,TensorBoard可视化.ipynb)    | ⭐️⭐️⭐️   |   1hour    | ✅   |
 |&nbsp; |[**六、Pytorch的高阶API**](./六、Pytorch的高阶API.ipynb)|    ⭐️ | 0hour|✅  |
 |day18|  [6-1,构建模型的3种方法](./6-1,构建模型的3种方法.ipynb)   | ⭐️⭐️    |   0.5hour    |✅   |
@@ -212,6 +212,7 @@ torch version: 1.10.0
 |day1|  [A-1, Kaggle免费GPU使用攻略](./A-1,Kaggle免费GPU使用攻略.ipynb)   | ⭐️⭐️⭐️    |   1hour    |✅   |
 |day2|  [A-2, Streamlit构建机器学习应用](./A-2,Streamlit构建机器学习应用.ipynb)  | ⭐️⭐️⭐️   |  1hour    | ✅  |
 |day3| [A-3, 使用Mac M1芯片加速pytorch](./A-3,使用MacM1芯片加速pytorch.ipynb) | ⭐️⭐️⭐️   |  1hour    | ✅  |
+|day4| [A-4, optuna可视化调参](./A-3,使用MacM1芯片加速pytorch.ipynb) | ⭐️⭐️⭐️   |  1hour    | ✅  |
 
 
 
