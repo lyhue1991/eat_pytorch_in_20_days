@@ -213,9 +213,9 @@ torch version: 1.10.0
 |day2|  [A-2, Streamlit构建机器学习应用](./A-2,Streamlit构建机器学习应用.ipynb)  | ⭐️⭐️⭐️   |  1hour    | ✅  |
 |day3| [A-3, 使用Mac M1芯片加速pytorch](./A-3,使用MacM1芯片加速pytorch.ipynb) | ⭐️⭐️⭐️   |  1hour    | ✅  |
 |day4| [A-4, optuna可视化调参魔法指南](./A-4,optuna可视化调参魔法指南.ipynb) | ⭐️⭐️⭐️⭐️   |  1hour    | ✅  |
-|day5| [A-5, gradio让你的机器学习模型性感起来](./A-5,optuna可视化调参魔法指南.ipynb) | ⭐️⭐️⭐️⭐️   |  1hour    | ✅  |
-|day6| [A-6, wandb模型可视化分析](./A-6,optuna可视化调参魔法指南.ipynb) | ⭐️⭐️⭐️⭐   |  0.5hour    | ✅  |
-|day7| [A-7, wandb模型可视化自动调参](./A-7,optuna可视化调参魔法指南.ipynb) | ⭐️⭐️⭐️⭐  |  1hour    | ✅  |
+|day5| [A-5, gradio让你的机器学习模型性感起来](./A-5,Gradio让你的机器学习模型性感起来.ipynb) | ⭐️⭐️⭐️⭐️   |  1hour    | ✅  |
+|day6| [A-6, wandb模型可视化分析](./A-6,30分钟吃掉wandb可视化模型分析.ipynb) | ⭐️⭐️⭐️⭐   |  0.5hour    | ✅  |
+|day7| [A-7, wandb模型可视化自动调参](./A-7,30分钟吃掉wandb可视化自动调参.ipynb) | ⭐️⭐️⭐️⭐  |  1hour    | ✅  |
 
 
 
