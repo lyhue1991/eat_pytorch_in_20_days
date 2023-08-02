@@ -1,38 +1,10 @@
 # How to eat Pytorch in 20 days ?🔥🔥
 
 
-🔥🔥 B站讲解：https://www.bilibili.com/video/BV1Ua411P7oe
-
-🐳🐳 和鲸专栏：https://www.heywhale.com/home/column/5f2ac5d8af3980002cb1bc08
-
-🌺🌺 公众号：https://mp.weixin.qq.com/s/0YdveETOZkq2SFtDkIANEg 
-
-
-### 一，本书📖面向读者 👼
+## 一，本书📖面向读者 👼
 
 
 **本书假定读者有一定的机器学习和深度学习基础，使用过Keras或TensorFlow或Pytorch搭建训练过简单的模型。**
-
-**对于没有任何机器学习和深度学习基础的同学，建议在学习本书时同步参考阅读《Python深度学习》一书的第一部分"深度学习基础"内容。**
-
-《Python深度学习》这本书是Keras之父Francois Chollet所著，该书假定读者无任何机器学习知识，以Keras为工具，
-
-使用丰富的范例示范深度学习的最佳实践，该书通俗易懂，**全书没有一个数学公式，注重培养读者的深度学习直觉。**。
-
-《Python深度学习》一书的第一部分的4个章节内容如下，预计读者可以在20小时之内学完。
-
-* 1，什么是深度学习
-
-* 2，神经网络的数学基础
-
-* 3，神经网络入门
-
-* 4，机器学习基础
-
-
-<!-- #region -->
-
-
 
 
 🔥🔥**号外号外，《20天吃掉那只Pytorch》视频版本登录BiliBili啦，吃货本货倾情掌勺，只为最纯正的乡土味道，欢迎新老朋友前来品尝** 🍉🍉！
@@ -40,12 +12,7 @@
 https://www.bilibili.com/video/BV1Ua411P7oe
     
 
-
-
-
-<!-- #endregion -->
-
-### 二，本书写作风格 🍉
+## 二，本书写作风格 🍉
 
 
 **本书是一本对人类用户极其友善的Pytorch入门工具书，Don't let me think是本书的最高追求。**
@@ -70,7 +37,7 @@ https://www.bilibili.com/video/BV1Ua411P7oe
 
 ```
 
-### 三，本书学习方案 ⏰
+## 三，本书学习方案 ⏰
 
 **1，学习计划**
 
@@ -83,9 +50,9 @@ https://www.bilibili.com/video/BV1Ua411P7oe
 **点击学习内容蓝色标题即可进入该章节。**
 
 
-|日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|B站讲解|
-|----:|:--------------------------------------------------------------|-----------:|----------:|-----:|-----:|
-|&nbsp;|[**一、Pytorch的建模流程**](./一、Pytorch的建模流程.ipynb)    |⭐️   |   0hour   |✅    |
+|日期 | 学习内容                                                       | 内容难度   | 预计学习时间 | 更新状态|
+|----:|:--------------------------------------------------------------|-----------:|----------:|-----:|
+|&nbsp;|[**一、Pytorch的建模流程**](./一、Pytorch的建模流程.ipynb)    |⭐️   |   0hour   |✅    | 
 |day1 | [1-1,结构化数据建模流程范例](./1-1,结构化数据建模流程范例.ipynb)    | ⭐️⭐️⭐️ |   1hour    |✅    |
 |day2 | [1-2,图片数据建模流程范例](./1-2,图片数据建模流程范例.ipynb)    | ⭐️⭐️⭐️⭐️  |   2hour    | ✅   |
 |day3 | [1-3,文本数据建模流程范例](./1-3,文本数据建模流程范例.ipynb)   | ⭐️⭐️⭐️⭐️⭐️  |   2hour    | ✅  |
@@ -121,7 +88,6 @@ https://www.bilibili.com/video/BV1Ua411P7oe
 
 本书全部源码在jupyter中编写测试通过，建议通过git克隆到本地，并在jupyter中交互式运行学习。
 
-<!-- #region -->
 step1: 克隆本书源码到本地,使用码云镜像仓库国内下载速度更快
 ```
 git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
@@ -130,13 +96,7 @@ git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
 step2: 公众号 **算法美食屋** 回复关键词：**pytorch**， 获取本项目所用数据集汇总压缩包 eat_pytorch_datasets.zip百度云盘下载链接，下载解压并移动到eat_pytorch_in_20_days路径下，约160M。
 
 
-救命方案：如果环境配置遇到了困难，也可以在和鲸社区fork项目后直接运行。
 
-和鲸《20天吃掉pytorch》专栏地址：https://www.heywhale.com/home/column/5f2ac5d8af3980002cb1bc08
-
-
-
-<!-- #endregion -->
 
 ```python
 import torch 
@@ -152,7 +112,7 @@ print("[[2,1]]@[[-1],[2]] =", c.item())
 ```
 
 ```
-torch version: 1.10.0
+torch version: 2.0.1
 [[2,1]]@[[-1],[2]] = 0
 ```
 
@@ -161,28 +121,10 @@ torch version: 1.10.0
 ```
 
 
-### 四，项目更新记录
-
-<!-- #region -->
-#### 1， 2022-06🎈🎈更新pytorch模型训练工具库torchkeras
-
-相关章节代码进行了对应优化调整。
-
-|features| torchkeras.KerasModel     |  torchkeras.LightModel   | 
-|----:|:-------------------------:|:-----------:|
-|progress bar | ✅    |✅    |
-|early stopping | ✅    |✅    |
-|metrics from torchmetrics | ✅    |✅    |
-|gpu training | ✅    |✅    |
-|multi-gpus training |   ❌  |✅    |
-|tensorboard callback |   ❌  |✅    |
-|simple source code|   ✅   |❌  |
-
-详情参考项目链接：：https://github.com/lyhue1991/torchkeras 
+## 四，项目更新记录
 
 
-
-#### 2，2022-08🎈🎈更新 **pytorch与广告推荐**章节
+### 1，2022-08🎈🎈更新 **pytorch与广告推荐**章节
 
 适合对广告推荐领域感兴趣，且需要进阶的同学😋😋
 
@@ -201,7 +143,7 @@ torch version: 1.10.0
 
 
 
-#### 3，2023-03🎈🎈更新 彩蛋章节
+### 2，2023-03🎈🎈更新 彩蛋章节
 
 介绍一些与pytorch相关的周边工具
 
@@ -220,20 +162,38 @@ torch version: 1.10.0
 
 
 
-<!-- #endregion -->
+### 3， 2023-07🎈🎈更新pytorch模型训练工具库torchkeras
+
+相关章节代码进行了对应优化调整。
+
+
+|功能| 稳定支持起始版本 | 依赖或借鉴库 |
+|:----|:-------------------:|:--------------|
+|✅ 训练进度条 | 3.0.0   | 依赖tqdm,借鉴keras|
+|✅ 训练评估指标  | 3.0.0   | 借鉴pytorch_lightning |
+|✅ notebook中训练自带可视化 |  3.8.0  |借鉴fastai |
+|✅ early stopping | 3.0.0   | 借鉴keras |
+|✅ gpu training | 3.0.0    |依赖accelerate|
+|✅ multi-gpus training(ddp) |   3.6.0 | 依赖accelerate|
+|✅ fp16/bf16 training|   3.6.0  | 依赖accelerate|
+|✅ tensorboard callback |   3.7.0  |依赖tensorboard |
+|✅ wandb callback |  3.7.0 |依赖wandb |
+
+
+详情参考项目链接：：https://github.com/lyhue1991/torchkeras 
+
+
 
 ```python
 
 ```
 
-### 五，鼓励和联系作者 🎈🎈
+## 五，鼓励和联系作者 🎈🎈
 
 
 **如果本书对你有所帮助，想鼓励一下作者，记得给本项目加一颗星星star⭐️，并分享给你的朋友们喔😊!** 
 
-如果对本书内容理解上有需要进一步和作者交流的地方，欢迎在公众号"算法美食屋"下留言。作者时间和精力有限，会酌情予以回复。
-
-也可以在公众号后台回复关键字：**加群**，加入读者交流群和大家讨论。
+如果对本书内容理解上有一些疑问或者建议，可以在公众号"算法美食屋"后台回复关键字：**加群**，加入读者交流群和大家讨论。
 
 ![算法美食屋logo.png](https://tva1.sinaimg.cn/large/e6c9d24egy1h41m2zugguj20k00b9q46.jpg)
 
