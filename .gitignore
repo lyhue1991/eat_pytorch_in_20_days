@@ -10,3 +10,5 @@ data/*.pkl
 data/tensorboard
 data/mnist 
 mnist
+*.png
+
